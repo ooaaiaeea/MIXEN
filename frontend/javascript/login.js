@@ -27,7 +27,7 @@ async function login(event){
             throw new Error()
         }
 
-        loading.textcontent = "Success! Redirecting..."
+        loading.textContent = "Success! Redirecting..."
 
         //Ska man hamna i playlists här????????
         window.location.href = "playlists.html";
