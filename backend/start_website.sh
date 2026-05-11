@@ -1,0 +1,1 @@
+deno -RW --allow-net --watch ./server.js
