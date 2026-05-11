@@ -12,7 +12,7 @@ async function login(event){
 
     try {
         loading.textContent = "Logging in. Loading..."
-        const request = new Request("/api/v1/auth/login", {
+        const request = new Request("/api/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json"
