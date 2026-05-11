@@ -1,0 +1,272 @@
+[
+	{
+		"album_id": "alb-001",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Midnight Whisper",
+		"release_date": "2023-04-15",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-002",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Ethereal Glow",
+		"release_date": "2023-08-22",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-003",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Starlit",
+		"release_date": "2021-11-10",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-004",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Moon Shadows",
+		"release_date": "2022-05-18",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-005",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Lucid Dreams",
+		"release_date": "2020-09-05",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-006",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Solar Eclipse",
+		"release_date": "2024-02-14",
+		"artist_id": "art-001",
+		"genre": "Dream Pop"
+	},
+	{
+		"album_id": "alb-007",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Neon Drive",
+		"release_date": "2023-01-12",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-008",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Grid Runner",
+		"release_date": "2023-06-30",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-009",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Cybernetic Hearts",
+		"release_date": "2021-03-21",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-010",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Outrun the Sun",
+		"release_date": "2022-08-14",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-011",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Digital Horizon",
+		"release_date": "2019-11-11",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-012",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Mainframe",
+		"release_date": "2024-01-05",
+		"artist_id": "art-002",
+		"genre": "Synthwave"
+	},
+	{
+		"album_id": "alb-013",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Rusty Nails",
+		"release_date": "2022-10-31",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-014",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Broken Glass",
+		"release_date": "2023-03-15",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-015",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Basement Tapes",
+		"release_date": "2020-07-07",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-016",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Static",
+		"release_date": "2021-12-01",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-017",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Echoes of the Fall",
+		"release_date": "2018-05-20",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-018",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Fading Light",
+		"release_date": "2024-04-10",
+		"artist_id": "art-003",
+		"genre": "Alternative Rock"
+	},
+	{
+		"album_id": "alb-019",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Velvet Touch",
+		"release_date": "2023-02-14",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-020",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Midnight Call",
+		"release_date": "2023-07-09",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-021",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Silken Words",
+		"release_date": "2021-09-28",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-022",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Heartstrings",
+		"release_date": "2022-04-04",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-023",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Soul Reflections",
+		"release_date": "2020-11-15",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-024",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Golden Hour",
+		"release_date": "2023-10-20",
+		"artist_id": "art-004",
+		"genre": "Contemporary R&B"
+	},
+	{
+		"album_id": "alb-025",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Coffee Stains",
+		"release_date": "2022-01-18",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	},
+	{
+		"album_id": "alb-026",
+		"album_type": "Single",
+		"total_tracks": 1,
+		"name": "Rainy Window",
+		"release_date": "2022-11-03",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	},
+	{
+		"album_id": "alb-027",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Autumn Leaves",
+		"release_date": "2021-10-12",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	},
+	{
+		"album_id": "alb-028",
+		"album_type": "EP",
+		"total_tracks": 5,
+		"name": "Midnight Groove",
+		"release_date": "2023-05-05",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	},
+	{
+		"album_id": "alb-029",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "City Lights",
+		"release_date": "2019-08-30",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	},
+	{
+		"album_id": "alb-030",
+		"album_type": "Album",
+		"total_tracks": 12,
+		"name": "Smoky Lounge",
+		"release_date": "2024-03-22",
+		"artist_id": "art-005",
+		"genre": "Lo-fi Jazz"
+	}
+]
