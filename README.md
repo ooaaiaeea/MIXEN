@@ -6,6 +6,9 @@ ___
 #### Start The Backend
 Start the backend through the following command in backend folder:
 **deno -RW --allow-net --watch server.js**
+or run the following file in root folder*:
+**start_website.sh**
+###### *Requires git.bash being installed on windows
 
 ___
 #### Open The Frontend
