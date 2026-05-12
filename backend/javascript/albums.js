@@ -13,7 +13,6 @@ export class Album {
 
 	constructor(data) {
 		this.albumId = data.album_id;
-		this.albumType = data.album_type;
 		this.totalTracks = data.total_tracks;
 		this.image = data.image;
 		this.name = data.name;
@@ -21,7 +20,6 @@ export class Album {
 		this.artistId = data.artist_id;
 		this.genre = data.genre;
 		this.tracks = this.getAlbumTracks();
-		this.totalDuration = this.calculateAlbumDuration();
 	}
 
 	getAlbumTracks() {
@@ -38,31 +36,5 @@ export class Album {
 			}
 		}
 		return foundTracks;
-	}
-
-	calculateAlbumDuration() {
-		let totalHours = 0;
-		let totalMinutes = 0;
-		let totalSeconds = 0;
-		for (const track of this.tracks) {
-			const durationSplit = track.duration.split(":");
-			totalMinutes += parseInt(durationSplit[0]);
-			totalSeconds += parseInt(durationSplit[1]);
-		}
-		if (totalSeconds >= 60) {
-			totalMinutes += Math.floor(totalSeconds / 60);
-			totalSeconds = totalSeconds % 60;
-		}
-		if (totalMinutes >= 60) {
-			totalHours += Math.floor(totalMinutes / 60);
-			totalMinutes = totalMinutes % 60;
-		}
-		const durationArray = [totalHours, totalMinutes, totalSeconds];
-		for (let i = 0; i < durationArray.length; i++) {
-			if (durationArray[i] < 10) {
-				durationArray[i] = "0" + durationArray[i];
-			}
-		}
-		return durationArray.join(":");
 	}
 }

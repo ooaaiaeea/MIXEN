@@ -1,1 +1,11 @@
-[]
+[
+	{
+		"playlistId": "pl-1",
+		"ownerId": "usr-1",
+		"collaboratorIds": [],
+		"image": null,
+		"playlistName": "Awesome Music Playlist",
+		"description": "I just love the sounds of these tracks!",
+		"tracksInfo": []
+	}
+]

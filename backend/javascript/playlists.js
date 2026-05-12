@@ -46,7 +46,7 @@ export class Playlist {
 
 	static updatePlaylistById (playlistId, changedPlaylist) {
 		const currentPlaylists = Playlist.getPlaylists();
-		const ALLOWED_KEYS = ["userIds", "image", "playlistName", "description", "trackInfo"];
+		const ALLOWED_KEYS = ["collaboratorIds", "image", "playlistName", "description", "trackInfo"];
 		for (const playlist of currentPlaylists) {
 			if (playlist.playlistId == playlistId) {
 				for (const key in changedPlaylist) {
@@ -62,7 +62,8 @@ export class Playlist {
 	
 	constructor(data) {
 		this.playlistId = data.playlistId;
-		this.userIds = data.userIds;
+		this.ownerId = data.ownerId;
+		this.collaboratorIds = data.collaboratorIds;
 		this.image = data.image;
 		this.playlistName = data.playlistName;
 		this.description = data.description;

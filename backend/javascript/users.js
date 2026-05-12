@@ -64,8 +64,10 @@ export class User {
 		this.username = data.username;
 		this.password = data.password;
 		this.sessionId = data.sessionId;
+		this.latestEditedPlaylist = data.latestEditedPlaylist;
 		this.image = data.image;
 		this.userId = data.userId;
+		this.likedPlaylists = data.likedPlaylists;
 		this.playlists = this.checkPlaylistsAccess();
 	}
 
@@ -73,7 +75,7 @@ export class User {
 		const foundPlaylists = [];
 		const currentPlaylists = Playlist.getPlaylists();
 		for (const playlist of currentPlaylists) {
-			if (playlist.userIds.includes(this.userId)) {
+			if (playlist.ownerId == this.userId || playlist.collaboratorIds.includes(this.userId)) {
 				foundPlaylists.push(playlist);
 			}
 		}

@@ -1,27 +1,22 @@
 [
 	{
 		"artist_id": "art-001",
-		"name": "Luna Solstice",
-		"genre": "Dream Pop"
+		"name": "Luna Solstice"
 	},
 	{
 		"artist_id": "art-002",
-		"name": "The Binary Echo",
-		"genre": "Synthwave"
+		"name": "The Binary Echo"
 	},
 	{
 		"artist_id": "art-003",
-		"name": "Marcus Thorne",
-		"genre": "Alternative Rock"
+		"name": "Marcus Thorne"
 	},
 	{
 		"artist_id": "art-004",
-		"name": "Amina Ray",
-		"genre": "Contemporary R&B"
+		"name": "Amina Ray"
 	},
 	{
 		"artist_id": "art-005",
-		"name": "Velvet Horizon",
-		"genre": "Lo-fi Jazz"
+		"name": "Velvet Horizon"
 	}
 ]

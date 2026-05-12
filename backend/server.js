@@ -6,7 +6,10 @@ import { Track } from "./javascript/tracks.js";
 import { Album } from "./javascript/albums.js";
 import { Artist } from "./javascript/artists.js";
 
-
+// Make placeholders (Null och Empty array) for JSON files
+// Update data files, check for errors in JS files
+// Make images
+// Make placeholder users and playlists
 function handler(request) {
 	const options = {
 		headers: {
@@ -53,6 +56,7 @@ function handler(request) {
 
 	if (url.pathname == "/themix" && request.method == "GET") {
 		return serveFile(request, "./../frontend/index.html")
+		// CheckAuth, true = playlists, false = stay on index
 	}
 	return serveDir(request, {fsRoot: "./../frontend"});
 }

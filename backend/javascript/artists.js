@@ -14,8 +14,6 @@ export class Artist {
 	constructor(data) {
 		this.artistId = data.artist_id;
 		this.name = data.name;
-		this.genre = data.genre;
-		this.image = data.image;
 		this.albums = this.getArtistAlbums();
 	}
 
