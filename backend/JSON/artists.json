@@ -1,22 +1,22 @@
 [
 	{
-		"artist_id": "art-001",
+		"artist_id": "art-1",
 		"name": "Luna Solstice"
 	},
 	{
-		"artist_id": "art-002",
+		"artist_id": "art-2",
 		"name": "The Binary Echo"
 	},
 	{
-		"artist_id": "art-003",
+		"artist_id": "art-3",
 		"name": "Marcus Thorne"
 	},
 	{
-		"artist_id": "art-004",
+		"artist_id": "art-4",
 		"name": "Amina Ray"
 	},
 	{
-		"artist_id": "art-005",
+		"artist_id": "art-5",
 		"name": "Velvet Horizon"
 	}
 ]
