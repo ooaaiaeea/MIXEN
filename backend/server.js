@@ -6,16 +6,13 @@ import { Track } from "./javascript/tracks.js";
 import { Album } from "./javascript/albums.js";
 import { Artist } from "./javascript/artists.js";
 
-// Make placeholders (Null och Empty array) for JSON files
-// Update data files, check for errors in JS files
-// Make images
-// Make placeholder users and playlists
 function handler(request) {
 	const options = {
 		headers: {
 			"Content-Type": "application/json",
 			"Accept": "application/json",
-			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Origin": "http://localhost:8000",
+			"Access-Control-Allow-Credentials": "true",
 			"Access-Control-Allow-Headers": "Content-Type",
 			"Access-Control-Allow-Methods": "GET,POST,PATCH,DELETE",
 		}
@@ -28,26 +25,28 @@ function handler(request) {
 
 	function createSessionId () {
 		const randomId = crypto.randomUUID();
-		options.headers["Set-Cookie"] = `sessionId=${randomId}, max-age=86400, httpOnly, sameSite=strict`;
+		options.headers["Set-Cookie"] = `sessionId=${randomId}; max-age=86400; HttpOnly; SameSite=Strict`;
 		return randomId;
 	}
 	function deleteSessionId () {
-		options.headers["Set-Cookie"] = `sessionId=; max-age=0, httpOnly, sameSite=strict`;
+		options.headers["Set-Cookie"] = `sessionId=deleted; max-age=0; HttpOnly; SameSite=Strict`;
 	}
-	function checkAuth () {
-		const cookie = request.headers.get("cookie");
-		if (!cookie) {
-			return null
+	function checkSessionId () {
+		const cookies = request.headers.get("cookie");
+		if (!cookies) {
+			options.status = 401;
+			return null;
 		}
-		sessionId = cookie.split("=")[1]
 		const allUsers = User.getUsers();
 		for (const user of allUsers) {
-			if (user.sessionId == sessionId) {
+			if (cookies.includes(`sessionId=${user.sessionId}`)) {
 				return user;
 			}
 		}
+		options.status = 401;
 		return null;
 	}
+	const currentUser = checkSessionId();
 
 	
 	// if (url.pathname == "/api/auth/login" && request.method == "POST") {
