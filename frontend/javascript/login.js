@@ -14,7 +14,7 @@ async function login(event){
         const request = new Request("/api/auth/login", {
             method: "POST",
             headers: {
-                "Content-Type": "Application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(loginData),
             credentials: "include"
@@ -26,6 +26,7 @@ async function login(event){
             if (response.status == 401) {
                 throw new Error("Wrong username/email or password")
             }
+            //Man kan aldrig få 400 pga required i html? Ha för säkerhets skull ändå?
             if (response.status == 400) {
                 throw new Error("Missing username/email or password");
             }
