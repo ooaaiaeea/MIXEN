@@ -29,7 +29,7 @@ async function login(event){
         loading.textContent = "Success! Redirecting..."
 
         //Ska man hamna i playlists här????????
-        window.location.href = "playlists.html";
+        window.location.href = "home.html";
 
     } catch(error) {
         //Hur ska jag göra här för att kunna avgöra vad som misslyckats? Serverns svar avgör om användaren
