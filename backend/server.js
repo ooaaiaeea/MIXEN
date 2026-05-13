@@ -53,9 +53,13 @@ function handler(request) {
 		
 	// }
 
+
 	if (url.pathname == "/themix" && request.method == "GET") {
-		return serveFile(request, "./../frontend/index.html")
-		// CheckAuth, true = playlists, false = stay on index
+		if (currentUser) {
+			return serveFile(request, "./../frontend/home.html")
+		} else {
+			return serveFile(request, "./../frontend/index.html")
+		}
 	}
 	return serveDir(request, {fsRoot: "./../frontend"});
 }
