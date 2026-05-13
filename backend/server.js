@@ -52,7 +52,8 @@ async function handler(request) {
 	if (url.pathname == "/api/auth/register" && request.method == "POST") {
 		const newUser = await request.json();
 		newUser.sessionId = createSessionId();
-		options.status = User.addUser(newUser);
+		const userInstance = new User(newUser);
+		options.status = userInstance.save();
 		if (options.status == 201) {
 			return new Response(null, options);
 		} else if (options.status == 400) {
@@ -61,6 +62,20 @@ async function handler(request) {
 		} else if (options.status == 409) {
 			deleteSessionId();
 			return new Response(JSON.stringify("Email or username already in use"), options);
+		}
+	}
+
+	if (url.pathname == "/api/auth/login" && request.method == "POST") {
+		const loginData = await request.json();
+		const response = User.loginUser(loginData);
+		if (response[0] == 200) {
+			const loggedInUser = response[1];
+			loggedInUser.update({ sessionId: createSessionId() });
+			options.status = response[0];
+			return new Response(JSON.stringify("Logged in"), options);
+		} else if (response[0] == 401) {
+			options.status = response[0];
+			return new Response(JSON.stringify(`Wrong ${response[1]}`), options);
 		}
 	}
 

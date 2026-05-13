@@ -15,6 +15,19 @@ export class User {
 		Deno.writeTextFileSync("./JSON/users.json", JSON.stringify(usersData));
 	}
 
+	static loginUser(loginData) {
+		const currentUsers = User.getUsers();
+		for (const user of currentUsers) {
+			if (loginData.identifier == user.email || loginData.identifier == user.username) {
+				if (loginData.password == user.password) {
+					return [200, user];
+				}
+				return [401, "password"];
+			}
+		}
+		return [401, "email or username"];
+	}
+
 	constructor(data) {
 		this.email = data.email;
 		this.username = data.username;
@@ -81,7 +94,7 @@ export class User {
 	}
 
 	update(changedUser) {
-		const ALLOWED_KEYS = ["email", "username", "password", "image", "likedPlaylists"];
+		const ALLOWED_KEYS = ["email", "username", "password", "image", "likedPlaylists", "sessionId"];
 		const currentUsers = User.getUsers();
 		for (const user of currentUsers) {
 			if (user.userId == this.userId) {
