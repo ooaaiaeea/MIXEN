@@ -1,11 +1,11 @@
 async function login(event){
     event.preventDefault();
 
-    let email = document.querySelector("#email");
+    let identifier = document.querySelector("#identifier");
     let password = document.querySelector("#password");
 
     let loginData = {
-        email: email.value,
+        identifier: identifier.value,
         password: password.value
     }
 
@@ -23,18 +23,21 @@ async function login(event){
 
         if (!response.ok){
             console.log(`Login failed: ${response.status}`)
-            throw new Error()
+            if (response.status == 401) {
+                throw new Error("Wrong username/email or password")
+            }
+            if (response.status == 400) {
+                throw new Error("Missing username/email or password");
+            }
+            throw new Error("Something went wrong......")
         }
 
         loading.textContent = "Success! Redirecting..."
 
-        //Ska man hamna i playlists här????????
         window.location.href = "home.html";
 
     } catch(error) {
-        //Hur ska jag göra här för att kunna avgöra vad som misslyckats? Serverns svar avgör om användaren
-        //skickat fel uppgifter eller om något gått fel?
-        loading.textContent = "Login failed."
+        loading.textContent = `Login failed: ${error.message}`
     }
 
 }
