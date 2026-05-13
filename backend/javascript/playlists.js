@@ -15,51 +15,6 @@ export class Playlist {
 		Deno.writeTextFileSync("./JSON/playlists.json", JSON.stringify(playlistsData));
 	}
 
-	static addPlaylist(newPlaylist) {
-		const currentPlaylists = Playlist.getPlaylists();
-		let highestPlaylistId = 0;
-		for (const playlist of currentPlaylists) {
-			if (highestPlaylistId < parseInt(playlist.playlistId.split("-")[1])) {
-				highestPlaylistId = parseInt(playlist.playlistId.split("-")[1]);
-			}
-		}
-		newPlaylist.playlistId = "pl-" + (highestPlaylistId +1);
-		newPlaylist.tracksInfo = [];
-		currentPlaylists.push(newPlaylist);
-		Playlist.updatePlaylists(currentPlaylists);
-	}
-
-	static deletePlaylistById (playlistId) {
-		const currentPlaylists = Playlist.getPlaylists();
-		let foundPlaylistIndex;
-		for (let i = 0; i < currentPlaylists.length; i++) {
-			if (currentPlaylists[i].playlistId == playlistId) {
-				foundPlaylistIndex = i;
-				break;
-			}
-		}
-		if (foundPlaylistIndex !== undefined) {
-			currentPlaylists.splice(foundPlaylistIndex, 1);
-			Playlist.updatePlaylists(currentPlaylists);
-		}
-	}
-
-	static updatePlaylistById (playlistId, changedPlaylist) {
-		const currentPlaylists = Playlist.getPlaylists();
-		const ALLOWED_KEYS = ["collaboratorIds", "image", "playlistName", "description", "trackInfo"];
-		for (const playlist of currentPlaylists) {
-			if (playlist.playlistId == playlistId) {
-				for (const key in changedPlaylist) {
-					if (ALLOWED_KEYS.includes(key)) {
-						playlist[key] = changedPlaylist[key];
-					}
-				}
-				break;
-			}
-		}
-		Playlist.updatePlaylists(currentPlaylists);
-	}
-	
 	constructor(data) {
 		this.playlistId = data.playlistId;
 		this.ownerId = data.ownerId;
@@ -83,5 +38,51 @@ export class Playlist {
 			}
 		}
 		return foundTracks;
+	}
+
+	save() {
+		const currentPlaylists = Playlist.getPlaylists();
+		let highestPlaylistId = 0;
+		for (const playlist of currentPlaylists) {
+			if (highestPlaylistId < parseInt(playlist.playlistId.split("-")[1])) {
+				highestPlaylistId = parseInt(playlist.playlistId.split("-")[1]);
+			}
+		}
+		this.playlistId = "pl-" + (highestPlaylistId + 1);
+		this.tracksInfo = [];
+		currentPlaylists.push(this);
+		Playlist.updatePlaylists(currentPlaylists);
+	}
+
+	delete() {
+		const currentPlaylists = Playlist.getPlaylists();
+		let foundPlaylistIndex;
+		for (let i = 0; i < currentPlaylists.length; i++) {
+			if (currentPlaylists[i].playlistId == this.playlistId) {
+				foundPlaylistIndex = i;
+				break;
+			}
+		}
+		if (foundPlaylistIndex !== undefined) {
+			currentPlaylists.splice(foundPlaylistIndex, 1);
+			Playlist.updatePlaylists(currentPlaylists);
+		}
+	}
+
+	update(changedPlaylist) {
+		const currentPlaylists = Playlist.getPlaylists();
+		const ALLOWED_KEYS = ["collaboratorIds", "image", "playlistName", "description", "tracksInfo"];
+		for (const playlist of currentPlaylists) {
+			if (playlist.playlistId == this.playlistId) {
+				for (const key in changedPlaylist) {
+					if (ALLOWED_KEYS.includes(key)) {
+						playlist[key] = changedPlaylist[key]; // Update the object meant for the database
+						this[key] = changedPlaylist[key]; // Update the current in-memory object
+					}
+				}
+				break;
+			}
+		}
+		Playlist.updatePlaylists(currentPlaylists);
 	}
 }
