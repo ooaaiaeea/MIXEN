@@ -6,7 +6,7 @@ import { Track } from "./javascript/tracks.js";
 import { Album } from "./javascript/albums.js";
 import { Artist } from "./javascript/artists.js";
 
-function handler(request) {
+async function handler(request) {
 	const options = {
 		headers: {
 			"Content-Type": "application/json",
@@ -49,9 +49,20 @@ function handler(request) {
 	const currentUser = checkSessionId();
 
 	
-	// if (url.pathname == "/api/auth/login" && request.method == "POST") {
-		
-	// }
+	if (url.pathname == "/api/auth/register" && request.method == "POST") {
+		const newUser = await request.json();
+		newUser.sessionId = createSessionId();
+		options.status = User.addUser(newUser);
+		if (options.status == 201) {
+			return new Response(null, options);
+		} else if (options.status == 400) {
+			deleteSessionId();
+			return new Response(JSON.stringify("Missing keys in user"), options);
+		} else if (options.status == 409) {
+			deleteSessionId();
+			return new Response(JSON.stringify("Email or username already in use"), options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

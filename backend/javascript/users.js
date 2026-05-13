@@ -16,16 +16,31 @@ export class User {
 	}
 
 	static addUser(newUser) {
+		const REQUIRED_KEYS = ["email", "username", "password", "sessionId"];
+		for (const key of REQUIRED_KEYS) {
+			if (!newUser[key]) {
+				return 400;
+			}
+		}
 		const currentUsers = User.getUsers();
 		let highestUserId = 0;
-		for (const user of currentUsers) {
-			if (highestUserId < parseInt(user.userId.split("-")[1])) {
-				highestUserId = parseInt(user.userId.split("-")[1]);
+		if (currentUsers.length != 0) {
+			for (const user of currentUsers) {
+				if (highestUserId < parseInt(user.userId.split("-")[1])) {
+					highestUserId = parseInt(user.userId.split("-")[1]);
+				}
+				if (user.email == newUser.email || user.username == newUser.username) {
+					return 409;
+				}
 			}
 		}
 		newUser.userId = "usr-" + (highestUserId +1);
+		const PLACEHOLDER_IMAGES = ["./images/users/placeholder_blue.png", "./images/users/placeholder_green.png", "./images/users/placeholder_red.png", "./images/users/placeholder_yellow.png"]
+		newUser.image = PLACEHOLDER_IMAGES[Math.floor(Math.random() * PLACEHOLDER_IMAGES.length)];
+		newUser.likedPlaylists = [];
 		currentUsers.push(newUser);
 		User.updateUsers(currentUsers);
+		return 201;
 	}
 
 	static deleteUserById (userId) {
@@ -64,7 +79,6 @@ export class User {
 		this.username = data.username;
 		this.password = data.password;
 		this.sessionId = data.sessionId;
-		this.latestEditedPlaylist = data.latestEditedPlaylist;
 		this.image = data.image;
 		this.userId = data.userId;
 		this.likedPlaylists = data.likedPlaylists;
