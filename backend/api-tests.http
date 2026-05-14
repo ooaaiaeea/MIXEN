@@ -96,3 +96,22 @@ Content-Type: application/json
     "identifier": "nonexistent_api_user",
     "password": "password123"
 }
+
+###
+
+# ============================================================================
+# GROUP: Auth - Logout
+# ============================================================================
+
+# @name Logout_Success_204
+# Description: Test successful logout.
+# This test relies on a preceding successful login (like Login_Success_200)
+# to have established a valid session cookie.
+POST {{baseUrl}}/api/auth/logout
+
+###
+
+# @name Logout_Unauthorized_401
+# Description: Test that attempting to logout without a valid session
+# (e.g., after a successful logout) results in an unauthorized error.
+POST {{baseUrl}}/api/auth/logout

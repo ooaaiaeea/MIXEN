@@ -64,7 +64,6 @@ async function handler(request) {
 			return new Response(JSON.stringify("Email or username already in use"), options);
 		}
 	}
-
 	if (url.pathname == "/api/auth/login" && request.method == "POST") {
 		const loginData = await request.json();
 		const response = User.loginUser(loginData);
@@ -77,6 +76,13 @@ async function handler(request) {
 			options.status = response[0];
 			return new Response(JSON.stringify(`Wrong ${response[1]}`), options);
 		}
+	}
+	if (url.pathname == "/api/auth/logout" && request.method == "POST") {
+		if (!currentUser) { return new Response(null, options) }
+		currentUser.update({ sessionId: null });
+		deleteSessionId();
+		options.status = 204;
+		return new Response(null, options);
 	}
 
 
