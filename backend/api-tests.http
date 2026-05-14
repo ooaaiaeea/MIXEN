@@ -19,6 +19,45 @@
 ###
 
 # ============================================================================
+# GROUP: General API Validation
+# ============================================================================
+
+# @name API_Options_200
+# Description: Test OPTIONS method on an API endpoint (CORS preflight)
+OPTIONS {{baseUrl}}/api/auth/register
+
+###
+
+# @name API_GET_Missing_Accept_406
+# Description: Test GET request missing the Accept: application/json header
+GET {{baseUrl}}/api/auth/me
+Accept: text/plain
+
+###
+
+# @name API_POST_Missing_ContentType_406
+# Description: Test POST request missing the Content-Type: application/json header
+POST {{baseUrl}}/api/auth/register
+Content-Type: text/plain
+
+{
+    "username": "testUser_api"
+}
+
+###
+
+# @name API_PATCH_Missing_ContentType_406
+# Description: Test PATCH request missing the Content-Type: application/json header
+PATCH {{baseUrl}}/api/auth/edit
+Content-Type: text/plain
+
+{
+    "username": "updatedUser_api"
+}
+
+###
+
+# ============================================================================
 # GROUP: Auth - Register
 # ============================================================================
 

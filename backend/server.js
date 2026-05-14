@@ -17,10 +17,24 @@ async function handler(request) {
 			"Access-Control-Allow-Methods": "GET,POST,PATCH,DELETE",
 		}
 	}
-	if (request.method == "OPTIONS") {
-		return new Response(null, options)
+	const url = new URL(request.url);
+	if (url.pathname.startsWith("/api")) {
+		if (request.method == "OPTIONS") {
+			return new Response(null, options);
+		} else if (request.method == "GET") {
+			const accept = request.headers.get("Accept");
+			if (!accept || !accept.includes("application/json")) {
+				options.status = 406;
+				return new Response(JSON.stringify("Accept not set to json"), options);
+			}
+		} else if (request.method == "POST" || request.method == "PATCH") {
+			const contentType = request.headers.get("Content-Type");
+			if (!contentType || !contentType.includes("application/json")) {
+				options.status = 406;
+				return new Response(JSON.stringify("Content-Type not set to json"), options);
+			}
+		}
 	}
-	const url = new URL(request.url)
 
 
 	function createSessionId () {
