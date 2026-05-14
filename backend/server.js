@@ -94,6 +94,18 @@ async function handler(request) {
 		options.status = 200;
 		return new Response(JSON.stringify(userData), options);
 	}
+	if (url.pathname == "/api/auth/edit" && request.method == "PATCH") {
+		if (!currentUser) { return new Response(null, options) }
+		const changedUser = await request.json();
+		options.status = currentUser.editProfile(changedUser);
+		if (options.status == 409) {
+			return new Response(JSON.stringify("Email or username already in use"), options);
+		} else if (options.status == 400) {
+			return new Response(JSON.stringify("All keys missing in user"), options);
+		} else if (options.status == 204) {
+			return new Response(null, options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

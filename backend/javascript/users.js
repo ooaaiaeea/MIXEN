@@ -18,8 +18,8 @@ export class User {
 	static loginUser(loginData) {
 		const currentUsers = User.getUsers();
 		for (const user of currentUsers) {
-			if (loginData.identifier == user.email || loginData.identifier == user.username) {
-				if (loginData.password == user.password) {
+			if (loginData.identifier === user.email || loginData.identifier === user.username) {
+				if (loginData.password === user.password) {
 					return [200, user];
 				}
 				return [401, "password"];
@@ -64,7 +64,7 @@ export class User {
 				if (highestUserId < parseInt(user.userId.split("-")[1])) {
 					highestUserId = parseInt(user.userId.split("-")[1]);
 				}
-				if (user.email == this.email || user.username == this.username) {
+				if (user.email === this.email || user.username === this.username) {
 					return 409;
 				}
 			}
@@ -108,5 +108,35 @@ export class User {
 			}
 		}
 		User.updateUsers(currentUsers);
+	}
+
+	editProfile(changedUser) {
+		const ALLOWED_KEYS = ["email", "username", "password", "image"];
+		let foundKey = false;
+		const keysToUpdate = {};
+		for (const key in changedUser) {
+			if (ALLOWED_KEYS.includes(key)) {
+				keysToUpdate[key] = changedUser[key];
+				foundKey = true;
+			}
+		}
+		if (!foundKey) {
+			return 400;
+		}
+		if (keysToUpdate.email || keysToUpdate.username) {
+			const currentUsers = User.getUsers();
+			for (const user of currentUsers) {
+				if (user.userId != this.userId) {
+					if (keysToUpdate.email && user.email === keysToUpdate.email) {
+						return 409;
+					}
+					if (keysToUpdate.username && user.username === keysToUpdate.username) {
+						return 409;
+					}
+				}
+			}
+		}
+		this.update(keysToUpdate);
+		return 204;
 	}
 }

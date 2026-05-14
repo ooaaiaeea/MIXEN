@@ -133,3 +133,55 @@ GET {{baseUrl}}/api/auth/me
 # Description: Test error handling when attempting to retrieve user data without being logged in.
 # Ensure you run a logout request (or clear your cookies) before running this test.
 GET {{baseUrl}}/api/auth/me
+
+###
+
+# ============================================================================
+# GROUP: Auth - Edit
+# ============================================================================
+
+# @name Edit_Success_204
+# Description: Test successful update of user profile.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/auth/edit
+Content-Type: application/json
+
+{
+    "username": "updatedUser_api",
+    "email": "updated_api@example.com"
+}
+
+###
+
+# @name Edit_Missing_Data_400
+# Description: Test error handling when attempting to edit without providing any data.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/auth/edit
+Content-Type: application/json
+
+{"sessionId": "LetMeInPlease"}
+
+###
+
+# @name Edit_Conflict_409
+# Description: Test error handling when updating to an email or username already in use.
+# Ensure you run a successful login request before running this test.
+# Note: "PirateKing" is a pre-existing username from users.json.
+PATCH {{baseUrl}}/api/auth/edit
+Content-Type: application/json
+
+{
+    "username": "Samtopia"
+}
+
+###
+
+# @name Edit_Unauthorized_401
+# Description: Test error handling when attempting to edit user data without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+PATCH {{baseUrl}}/api/auth/edit
+Content-Type: application/json
+
+{
+    "username": "hackerUser"
+}
