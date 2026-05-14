@@ -106,6 +106,13 @@ async function handler(request) {
 			return new Response(null, options);
 		}
 	}
+	if (url.pathname == "/api/auth/delete" && request.method == "DELETE") {
+		if (!currentUser) { return new Response(null, options) }
+		currentUser.delete();
+		deleteSessionId();
+		options.status = 204;
+		return new Response(null, options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

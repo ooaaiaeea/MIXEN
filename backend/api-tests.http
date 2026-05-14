@@ -185,3 +185,21 @@ Content-Type: application/json
 {
     "username": "hackerUser"
 }
+
+###
+
+# ============================================================================
+# GROUP: Auth - Delete
+# ============================================================================
+
+# @name Delete_Success_204
+# Description: Test successful deletion of the current authenticated user.
+# Ensure you run a successful login request before running this test.
+DELETE {{baseUrl}}/api/auth/delete
+
+###
+
+# @name Delete_Unauthorized_401
+# Description: Test error handling when attempting to delete a user without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+DELETE {{baseUrl}}/api/auth/delete
