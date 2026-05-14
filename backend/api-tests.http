@@ -1,0 +1,98 @@
+# ============================================================================
+# REST CLIENT TEST SUITE
+# ============================================================================
+# INSTRUCTIONS FOR DEVELOPERS & FUTURE GEMINI SESSIONS:
+# 1. Format: This file is parsed by the VS Code "REST Client" extension.
+# 2. Separation: Every individual HTTP request MUST be separated by ###
+# 3. Variables: Define file-wide variables at the top using: @variableName = value
+# 4. Reference: Use variables in URLs/headers/body using: {{variableName}}
+# 5. Grouping: Group all tests for a single endpoint under a prominent comment header.
+# 6. Test Coverage: Every endpoint MUST have multiple requests testing:
+#    - The successful "happy path" (e.g., 200 OK, 201 Created).
+#    - Error handling (e.g., 400 Bad Request, 401 Unauthorized, 409 Conflict).
+# 7. Naming: Use the `# @name RequestName` syntax before a request to name it,
+#    allowing its response to be referenced in subsequent requests if needed.
+# ============================================================================
+
+@baseUrl = http://localhost:8000
+
+###
+
+# ============================================================================
+# GROUP: Auth - Register
+# ============================================================================
+
+# @name Register_Success_201
+# Description: Test successful registration of a new user
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "testUser_api",
+    "email": "test_api@example.com",
+    "password": "password123"
+}
+
+###
+
+# @name Register_Missing_Data_400
+# Description: Test error handling when required keys are missing
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "incompleteUser"
+}
+
+###
+
+# @name Register_Conflict_409
+# Description: Test error handling when email or username is already in use
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+    "username": "testUser_api",
+    "email": "test_api@example.com",
+    "password": "password123"
+}
+
+###
+
+# ============================================================================
+# GROUP: Auth - Login
+# ============================================================================
+
+# @name Login_Success_200
+# Description: Test successful login with correct credentials
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "identifier": "testUser_api",
+    "password": "password123"
+}
+
+###
+
+# @name Login_Wrong_Password_401
+# Description: Test login with an incorrect password
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "identifier": "testUser_api",
+    "password": "wrongPassword"
+}
+
+###
+
+# @name Login_User_Not_Found_401
+# Description: Test login with an unregistered identifier
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+    "identifier": "nonexistent_api_user",
+    "password": "password123"
+}
