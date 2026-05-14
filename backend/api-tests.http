@@ -115,3 +115,21 @@ POST {{baseUrl}}/api/auth/logout
 # Description: Test that attempting to logout without a valid session
 # (e.g., after a successful logout) results in an unauthorized error.
 POST {{baseUrl}}/api/auth/logout
+
+###
+
+# ============================================================================
+# GROUP: Auth - Me
+# ============================================================================
+
+# @name Get_Me_Success_200
+# Description: Test successful retrieval of the current authenticated user's data.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/auth/me
+
+###
+
+# @name Get_Me_Unauthorized_401
+# Description: Test error handling when attempting to retrieve user data without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/auth/me

@@ -84,6 +84,16 @@ async function handler(request) {
 		options.status = 204;
 		return new Response(null, options);
 	}
+	if (url.pathname == "/api/auth/me" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const userData = {
+			userId: currentUser.userId,
+			username: currentUser.username,
+			email: currentUser.email,
+		};
+		options.status = 200;
+		return new Response(JSON.stringify(userData), options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {
