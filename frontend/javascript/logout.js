@@ -1,13 +1,9 @@
+const api = new API();
+const ui = new UI();
+
 async function logout(){
     try{
-        const response = await fetch("api/auth/logout", {
-            method = "POST",
-            credentials: "indluce"
-        });
-
-        if (!response.ok) {
-            throw new Error("logout failed");
-        }
+        await api.logout();
 
         window.location.href = "index.html";
     } catch (error) {
@@ -16,7 +12,7 @@ async function logout(){
 }
 
 
-const logoutButton = document.getElementById("#logout");
+const logoutButton = document.getElementById("logout");
 
 if (logoutButton != null) {
     logoutButton.addEventListener("click", logout)

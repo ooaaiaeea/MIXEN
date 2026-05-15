@@ -1,4 +1,5 @@
-
+const api = new API();
+const ui = new UI();
 
 async function register(event) {
     event.preventDefault();
@@ -9,7 +10,7 @@ async function register(event) {
     let confirmPassword = document.getElementById("confirm-password");
 
     if (password.value != confirmPassword.value) {
-        loading.textContent = "Passwords do not match";
+        ui.showError(loading, "Passwords do not match");
         return;
     }
 
@@ -20,39 +21,15 @@ async function register(event) {
     }
 
     try {
+        ui.showLoading(loading, "Creating account. Please wait.")
 
-        loading.textContent = "Creating account. Please wait.";
+        api.register(registerData);
 
-        const request = new Request("/api/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(registerData),
-            credentials: "include"
-        });
-
-        const response = await fetch(request);
-
-        if (!response.ok) {
-            console.log (`Register failed: response.status`)
-            //Man kan aldrig få 400 pga required i html? Ha för säkerhets skull ändå?
-            if (response.status == 400) {
-                throw new Error ("Missing username, email or password");
-            }
-
-            if (response.status == 409) {
-                throw new Error("Username or email already exists");
-            }
-
-            throw new Error("Something went wrong....")
-        }
-
-        loading.textContent = "Account created! Redirecting to login";
+        ui.showMessage(loading, "Account created! Redirecting to login")
 
         window.location.href = "login.html"
     } catch(error) {
-        loading.textContent = `Register failed: ${error.message}`;
+        ui.showError(loading, `Register failed: ${error.message}`)
     }
 
 }

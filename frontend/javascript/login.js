@@ -1,3 +1,6 @@
+const api = new API();
+const ui = new UI();
+
 async function login(event){
     event.preventDefault();
 
@@ -9,36 +12,19 @@ async function login(event){
         password: password.value
     }
 
+    loading.textContent = "Logging in. Loading...";
+
     try {
-        loading.textContent = "Logging in. Loading..."
-        const request = new Request("/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(loginData),
-            credentials: "include"
-        })
-        const response = await fetch(request);
+        ui.showLoading(loading);
 
-        if (!response.ok){
-            console.log(`Login failed: ${response.status}`)
-            if (response.status == 401) {
-                throw new Error("Wrong username/email or password")
-            }
-            //Man kan aldrig få 400 pga required i html? Ha för säkerhets skull ändå?
-            if (response.status == 400) {
-                throw new Error("Missing username/email or password");
-            }
-            throw new Error("Something went wrong......")
-        }
+        await api.login(loginData);
 
-        loading.textContent = "Success! Redirecting..."
+        ui.showMessage(loading, "Success! Redirecting...")
 
         window.location.href = "home.html";
 
     } catch(error) {
-        loading.textContent = `Login failed: ${error.message}`
+        ui.showError(container, error.message)
     }
 
 }
