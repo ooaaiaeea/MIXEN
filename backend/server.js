@@ -136,6 +136,16 @@ async function handler(request) {
 			return serveFile(request, "./../frontend/index.html")
 		}
 	}
+	const route = new URLPattern({ pathname: "/playlist/:id/add" })
+	if (route.test(url)){
+		console.log("1")
+		let match = route.exec(url);
+		console.log("2")
+		let id = match.pathname.groups.id;
+		console.log("3")
+		return serveFile(request, "./../frontend/addtracks.html")
+		
+	}
 	return serveDir(request, {fsRoot: "./../frontend"});
 }
 
