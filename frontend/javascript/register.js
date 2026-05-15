@@ -3,10 +3,10 @@
 async function register(event) {
     event.preventDefault();
 
-    let username = document.getElementById("#username");
-    let email = document.getElementById("#email");
-    let password = document.getElementById("#password");
-    let confirmPassword = document.getElementById("#confirm-password");
+    let username = document.getElementById("username");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let confirmPassword = document.getElementById("confirm-password");
 
     if (password.value != confirmPassword.value) {
         loading.textContent = "Passwords do not match";
@@ -57,7 +57,7 @@ async function register(event) {
 
 }
 
-const registerForm = document.getElementById("#register-form");
-let loading = document.getElementById("#loading");
+const registerForm = document.getElementById("register-form");
+let loading = document.getElementById("loading");
 
 registerForm.addEventlistener("submit", register)
