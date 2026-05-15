@@ -7,12 +7,11 @@ async function logout(){
 
         if (!response.ok) {
             throw new Error("logout failed");
-            //Vad ska hända här? Hur förmedlar man det
         }
 
         window.location.href = "index.html";
     } catch (error) {
-        console.log("Logout failed", reponse)
+        console.log("Logout failed:", error)
     }
 }
 
