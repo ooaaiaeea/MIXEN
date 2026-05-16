@@ -70,8 +70,10 @@ export class User {
 			}
 		}
 		this.userId = "usr-" + (highestUserId +1);
-		const PLACEHOLDER_IMAGES = ["./images/users/placeholder_blue.png", "./images/users/placeholder_green.png", "./images/users/placeholder_red.png", "./images/users/placeholder_yellow.png"]
-		this.image = PLACEHOLDER_IMAGES[Math.floor(Math.random() * PLACEHOLDER_IMAGES.length)];
+		if (!this.image) {
+			const placeholderImages = ["./images/users/placeholder_blue.png", "./images/users/placeholder_green.png", "./images/users/placeholder_red.png", "./images/users/placeholder_yellow.png"]
+			this.image = placeholderImages[Math.floor(Math.random() * placeholderImages.length)];
+		}
 		this.likedPlaylists = [];
 		currentUsers.push(this);
 		User.updateUsers(currentUsers);

@@ -136,15 +136,9 @@ async function handler(request) {
 			return serveFile(request, "./../frontend/index.html")
 		}
 	}
-	const route = new URLPattern({ pathname: "/playlist/:id/add" })
-	if (route.test(url)){
-		console.log("1")
-		let match = route.exec(url);
-		console.log("2")
-		let id = match.pathname.groups.id;
-		console.log("3")
+	const addTracksRoute = new URLPattern({ pathname: "/playlist/:id/add" })
+	if (addTracksRoute.test(url)){
 		return serveFile(request, "./../frontend/addtracks.html")
-		
 	}
 	return serveDir(request, {fsRoot: "./../frontend"});
 }
