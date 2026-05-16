@@ -141,7 +141,28 @@ async function handler(request) {
 				image: user.image,
 			});
 		}
+		options.status = 200;
 		return new Response(JSON.stringify(filteredUsers), options);
+	}
+	const userRoute = new URLPattern({ pathname: "/api/users/:id" })
+	if (userRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = userRoute.exec(url).pathname.groups.id;
+		const foundUser = User.getUserById(id);
+		if (!foundUser) {
+			options.status = 404;
+			return new Response(JSON.stringify("User not found"), options);
+		} else {
+			options.status = 200;
+			const filteredUser = {
+				userId: foundUser.userId,
+				username: foundUser.username,
+				image: foundUser.image,
+				likedPlaylists: foundUser.likedPlaylists,
+				playlists: foundUser.playlists,
+			};
+			return new Response(JSON.stringify(filteredUser), options);
+		}
 	}
 
 

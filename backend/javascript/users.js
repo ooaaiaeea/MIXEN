@@ -11,6 +11,16 @@ export class User {
 		return users;
 	}
 
+	static getUserById(id) {
+		const currentUsers = User.getUsers();
+		for (const user of currentUsers) {
+			if (user.userId == id) {
+				return user;
+			}
+		}
+		return null;
+	}
+
 	static updateUsers(usersData) {
 		Deno.writeTextFileSync("./JSON/users.json", JSON.stringify(usersData));
 	}
