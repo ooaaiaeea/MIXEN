@@ -56,8 +56,8 @@
 				"description": "A collaborative playlist for our favorite tunes.",
 				"tracksInfo": [
 					{ "trackId": "trk-36", "positionInPlaylist": 1 },
-					{ "trackId": "trk-101", "positionInPlaylist": 2 },
-					{ "trackId": "trk-24", "positionInPlaylist": 3 }
+					{ "trackId": "trk-101", "positionInPlaylist": 5 },
+					{ "trackId": "trk-24", "positionInPlaylist": 10 }
 				],
 				"tracks": [
 					{
@@ -105,19 +105,11 @@
 				"playlistName": "Straw Hat Grooves",
 				"description": "My absolute favorite sea shanties and party music.",
 				"tracksInfo": [
-					{ "trackId": "trk-118", "positionInPlaylist": 1 },
-					{ "trackId": "trk-105", "positionInPlaylist": 2 },
-					{ "trackId": "trk-148", "positionInPlaylist": 3 }
+					{ "trackId": "trk-118", "positionInPlaylist": 3 },
+					{ "trackId": "trk-105", "positionInPlaylist": 1 },
+					{ "trackId": "trk-148", "positionInPlaylist": 2 }
 				],
 				"tracks": [
-					{
-						"trackId": "trk-118",
-						"albumId": "alb-22",
-						"artistId": "art-4",
-						"duration": "03:55",
-						"name": "Mended",
-						"positionInAlbum": 3
-					},
 					{
 						"trackId": "trk-105",
 						"albumId": "alb-18",
@@ -133,6 +125,14 @@
 						"duration": "03:15",
 						"name": "Autumn Leaves",
 						"positionInAlbum": 2
+					},
+					{
+						"trackId": "trk-118",
+						"albumId": "alb-22",
+						"artistId": "art-4",
+						"duration": "03:55",
+						"name": "Mended",
+						"positionInAlbum": 3
 					}
 				]
 			},
@@ -145,8 +145,8 @@
 				"description": "A collaborative playlist for our favorite tunes.",
 				"tracksInfo": [
 					{ "trackId": "trk-36", "positionInPlaylist": 1 },
-					{ "trackId": "trk-101", "positionInPlaylist": 2 },
-					{ "trackId": "trk-24", "positionInPlaylist": 3 }
+					{ "trackId": "trk-101", "positionInPlaylist": 5 },
+					{ "trackId": "trk-24", "positionInPlaylist": 10 }
 				],
 				"tracks": [
 					{
@@ -181,7 +181,7 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": "204c8340-b0f7-43aa-b72c-f649c9ba18a1",
+		"sessionId": "84c42b89-66d7-435c-b4c2-cfb2d27e5bd2",
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],

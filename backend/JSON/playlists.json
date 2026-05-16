@@ -31,15 +31,15 @@
 		"tracksInfo": [
 			{
 				"trackId": "trk-118",
-				"positionInPlaylist": 1
+				"positionInPlaylist": 3
 			},
 			{
 				"trackId": "trk-105",
-				"positionInPlaylist": 2
+				"positionInPlaylist": 1
 			},
 			{
 				"trackId": "trk-148",
-				"positionInPlaylist": 3
+				"positionInPlaylist": 2
 			}
 		]
 	},
@@ -57,11 +57,11 @@
 			},
 			{
 				"trackId": "trk-101",
-				"positionInPlaylist": 2
+				"positionInPlaylist": 5
 			},
 			{
 				"trackId": "trk-24",
-				"positionInPlaylist": 3
+				"positionInPlaylist": 10
 			}
 		]
 	}

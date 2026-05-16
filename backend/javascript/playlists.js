@@ -28,12 +28,25 @@ export class Playlist {
 
 	getPlaylistTracks() {
 		const foundTracks = [];
-		const currentTracks = Track.getTracks();
-		for (const trackInfo of this.tracksInfo) {
-			for (const track of currentTracks) {
-				if (track.trackId == trackInfo.trackId) {
-					foundTracks.push(track);
-					break;
+		if (this.tracksInfo.length != 0) {
+			const currentTracks = Track.getTracks();
+			let highestPosition = 0;
+			for (const trackInfo of this.tracksInfo) {
+				if (highestPosition < trackInfo.positionInPlaylist) {
+					highestPosition = trackInfo.positionInPlaylist;
+				}
+			}
+			for (let i = 1; i <= highestPosition; i++) {
+				for (const trackInfo of this.tracksInfo) {
+					if (i == trackInfo.positionInPlaylist) {
+						for (const track of currentTracks) {
+							if (track.trackId == trackInfo.trackId) {
+								foundTracks.push(track);
+								break;
+							}
+						}
+						break;
+					}
 				}
 			}
 		}
