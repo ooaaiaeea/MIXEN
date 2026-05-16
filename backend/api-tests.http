@@ -147,6 +147,7 @@ Content-Type: application/json
 # This test relies on a preceding successful login (like Login_Success_200)
 # to have established a valid session cookie.
 POST {{baseUrl}}/api/auth/logout
+Content-Type: application/json
 
 ###
 
@@ -154,6 +155,7 @@ POST {{baseUrl}}/api/auth/logout
 # Description: Test that attempting to logout without a valid session
 # (e.g., after a successful logout) results in an unauthorized error.
 POST {{baseUrl}}/api/auth/logout
+Content-Type: application/json
 
 ###
 
@@ -165,6 +167,7 @@ POST {{baseUrl}}/api/auth/logout
 # Description: Test successful retrieval of the current authenticated user's data.
 # Ensure you run a successful login request before running this test.
 GET {{baseUrl}}/api/auth/me
+Accept: application/json
 
 ###
 
@@ -172,6 +175,7 @@ GET {{baseUrl}}/api/auth/me
 # Description: Test error handling when attempting to retrieve user data without being logged in.
 # Ensure you run a logout request (or clear your cookies) before running this test.
 GET {{baseUrl}}/api/auth/me
+Accept: application/json
 
 ###
 
@@ -242,3 +246,23 @@ DELETE {{baseUrl}}/api/auth/delete
 # Description: Test error handling when attempting to delete a user without being logged in.
 # Ensure you run a logout request (or clear your cookies) before running this test.
 DELETE {{baseUrl}}/api/auth/delete
+
+###
+
+# ============================================================================
+# GROUP: Users - Get All
+# ============================================================================
+
+# @name Get_Users_Success_200
+# Description: Test successful retrieval of all users.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/users
+Accept: application/json
+
+###
+
+# @name Get_Users_Unauthorized_401
+# Description: Test error handling when attempting to retrieve users without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/users
+Accept: application/json

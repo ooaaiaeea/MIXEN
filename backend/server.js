@@ -39,11 +39,11 @@ async function handler(request) {
 
 	function createSessionId () {
 		const randomId = crypto.randomUUID();
-		options.headers["Set-Cookie"] = `sessionId=${randomId}; max-age=86400; HttpOnly; SameSite=Strict`;
+		options.headers["Set-Cookie"] = `sessionId=${randomId}; max-age=86400; HttpOnly; SameSite=Strict; Path=/`;
 		return randomId;
 	}
 	function deleteSessionId () {
-		options.headers["Set-Cookie"] = `sessionId=deleted; max-age=0; HttpOnly; SameSite=Strict`;
+		options.headers["Set-Cookie"] = `sessionId=deleted; max-age=0; HttpOnly; SameSite=Strict; Path=/`;
 	}
 	function checkSessionId () {
 		const cookies = request.headers.get("cookie");
@@ -62,7 +62,7 @@ async function handler(request) {
 	}
 	const currentUser = checkSessionId();
 
-	
+
 	if (url.pathname == "/api/auth/register" && request.method == "POST") {
 		const newUser = await request.json();
 		newUser.sessionId = createSessionId();
@@ -104,6 +104,7 @@ async function handler(request) {
 			userId: currentUser.userId,
 			username: currentUser.username,
 			email: currentUser.email,
+			image: currentUser.image,
 		};
 		options.status = 200;
 		return new Response(JSON.stringify(userData), options);
@@ -126,6 +127,21 @@ async function handler(request) {
 		deleteSessionId();
 		options.status = 204;
 		return new Response(null, options);
+	}
+
+
+	if (url.pathname == "/api/users" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const allUsers = User.getUsers();
+		const filteredUsers = [];
+		for (const user of allUsers) {
+			filteredUsers.push({
+				userId: user.userId,
+				username: user.username,
+				image: user.image,
+			});
+		}
+		return new Response(JSON.stringify(filteredUsers), options);
 	}
 
 
