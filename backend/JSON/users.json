@@ -6,7 +6,87 @@
 		"sessionId": null,
 		"image": "https://static.wikia.nocookie.net/onepiece/images/e/e6/Tony_Tony_Chopper_Anime_Pre_Timeskip_Infobox.png/revision/latest?cb=20230906213030",
 		"userId": "usr-1",
-		"likedPlaylists": []
+		"likedPlaylists": [],
+		"playlists": [
+			{
+				"playlistId": "pl-1",
+				"ownerId": "usr-1",
+				"collaboratorIds": [],
+				"image": "https://static.vecteezy.com/system/resources/previews/070/802/343/non_2x/abstract-square-overlap-papercut-pattern-background-with-gradient-blue-and-purple-design-cool-banner-background-vector.jpg",
+				"playlistName": "Awesome Music Playlist",
+				"description": "I just love the sounds of these tracks!",
+				"tracksInfo": [
+					{ "trackId": "trk-100", "positionInPlaylist": 1 },
+					{ "trackId": "trk-171", "positionInPlaylist": 2 },
+					{ "trackId": "trk-20", "positionInPlaylist": 3 }
+				],
+				"tracks": [
+					{
+						"trackId": "trk-100",
+						"albumId": "alb-18",
+						"artistId": "art-3",
+						"duration": "04:30",
+						"name": "Cold Wind",
+						"positionInAlbum": 4
+					},
+					{
+						"trackId": "trk-171",
+						"albumId": "alb-30",
+						"artistId": "art-5",
+						"duration": "03:40",
+						"name": "Dim Lights",
+						"positionInAlbum": 3
+					},
+					{
+						"trackId": "trk-20",
+						"albumId": "alb-5",
+						"artistId": "art-1",
+						"duration": "04:40",
+						"name": "Deep Slumber",
+						"positionInAlbum": 8
+					}
+				]
+			},
+			{
+				"playlistId": "pl-3",
+				"ownerId": "usr-2",
+				"collaboratorIds": ["usr-1"],
+				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
+				"playlistName": "Collab Mix: PirateKing x Samtopia",
+				"description": "A collaborative playlist for our favorite tunes.",
+				"tracksInfo": [
+					{ "trackId": "trk-36", "positionInPlaylist": 1 },
+					{ "trackId": "trk-101", "positionInPlaylist": 2 },
+					{ "trackId": "trk-24", "positionInPlaylist": 3 }
+				],
+				"tracks": [
+					{
+						"trackId": "trk-36",
+						"albumId": "alb-6",
+						"artistId": "art-1",
+						"duration": "05:05",
+						"name": "Return of Light",
+						"positionInAlbum": 12
+					},
+					{
+						"trackId": "trk-101",
+						"albumId": "alb-18",
+						"artistId": "art-3",
+						"duration": "03:55",
+						"name": "Empty Streets",
+						"positionInAlbum": 5
+					},
+					{
+						"trackId": "trk-24",
+						"albumId": "alb-5",
+						"artistId": "art-1",
+						"duration": "05:20",
+						"name": "Morning Light",
+						"positionInAlbum": 12
+					}
+				]
+			}
+		]
 	},
 	{
 		"email": "luffy@strawhat.com",
@@ -15,6 +95,96 @@
 		"sessionId": null,
 		"image": "https://wallpapers-clan.com/wp-content/uploads/2022/06/one-piece-monkey-d-luffy-pfp-9.jpg",
 		"userId": "usr-2",
-		"likedPlaylists": []
+		"likedPlaylists": [],
+		"playlists": [
+			{
+				"playlistId": "pl-2",
+				"ownerId": "usr-2",
+				"collaboratorIds": [],
+				"image": "https://m.media-amazon.com/images/I/81Qd+SemebL._AC_UF894,1000_QL80_.jpg",
+				"playlistName": "Straw Hat Grooves",
+				"description": "My absolute favorite sea shanties and party music.",
+				"tracksInfo": [
+					{ "trackId": "trk-118", "positionInPlaylist": 1 },
+					{ "trackId": "trk-105", "positionInPlaylist": 2 },
+					{ "trackId": "trk-148", "positionInPlaylist": 3 }
+				],
+				"tracks": [
+					{
+						"trackId": "trk-118",
+						"albumId": "alb-22",
+						"artistId": "art-4",
+						"duration": "03:55",
+						"name": "Mended",
+						"positionInAlbum": 3
+					},
+					{
+						"trackId": "trk-105",
+						"albumId": "alb-18",
+						"artistId": "art-3",
+						"duration": "04:40",
+						"name": "Blind Faith",
+						"positionInAlbum": 9
+					},
+					{
+						"trackId": "trk-148",
+						"albumId": "alb-27",
+						"artistId": "art-5",
+						"duration": "03:15",
+						"name": "Autumn Leaves",
+						"positionInAlbum": 2
+					}
+				]
+			},
+			{
+				"playlistId": "pl-3",
+				"ownerId": "usr-2",
+				"collaboratorIds": ["usr-1"],
+				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
+				"playlistName": "Collab Mix: PirateKing x Samtopia",
+				"description": "A collaborative playlist for our favorite tunes.",
+				"tracksInfo": [
+					{ "trackId": "trk-36", "positionInPlaylist": 1 },
+					{ "trackId": "trk-101", "positionInPlaylist": 2 },
+					{ "trackId": "trk-24", "positionInPlaylist": 3 }
+				],
+				"tracks": [
+					{
+						"trackId": "trk-36",
+						"albumId": "alb-6",
+						"artistId": "art-1",
+						"duration": "05:05",
+						"name": "Return of Light",
+						"positionInAlbum": 12
+					},
+					{
+						"trackId": "trk-101",
+						"albumId": "alb-18",
+						"artistId": "art-3",
+						"duration": "03:55",
+						"name": "Empty Streets",
+						"positionInAlbum": 5
+					},
+					{
+						"trackId": "trk-24",
+						"albumId": "alb-5",
+						"artistId": "art-1",
+						"duration": "05:20",
+						"name": "Morning Light",
+						"positionInAlbum": 12
+					}
+				]
+			}
+		]
+	},
+	{
+		"email": "test_api@example.com",
+		"username": "testUser_api",
+		"password": "password123",
+		"sessionId": "204c8340-b0f7-43aa-b72c-f649c9ba18a1",
+		"image": "./images/users/placeholder_red.png",
+		"userId": "usr-3",
+		"likedPlaylists": [],
+		"playlists": []
 	}
 ]

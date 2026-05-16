@@ -6,7 +6,20 @@
 		"image": "https://static.vecteezy.com/system/resources/previews/070/802/343/non_2x/abstract-square-overlap-papercut-pattern-background-with-gradient-blue-and-purple-design-cool-banner-background-vector.jpg",
 		"playlistName": "Awesome Music Playlist",
 		"description": "I just love the sounds of these tracks!",
-		"tracksInfo": []
+		"tracksInfo": [
+			{
+				"trackId": "trk-100",
+				"positionInPlaylist": 1
+			},
+			{
+				"trackId": "trk-171",
+				"positionInPlaylist": 2
+			},
+			{
+				"trackId": "trk-20",
+				"positionInPlaylist": 3
+			}
+		]
 	},
 	{
 		"playlistId": "pl-2",
@@ -15,7 +28,20 @@
 		"image": "https://m.media-amazon.com/images/I/81Qd+SemebL._AC_UF894,1000_QL80_.jpg",
 		"playlistName": "Straw Hat Grooves",
 		"description": "My absolute favorite sea shanties and party music.",
-		"tracksInfo": []
+		"tracksInfo": [
+			{
+				"trackId": "trk-118",
+				"positionInPlaylist": 1
+			},
+			{
+				"trackId": "trk-105",
+				"positionInPlaylist": 2
+			},
+			{
+				"trackId": "trk-148",
+				"positionInPlaylist": 3
+			}
+		]
 	},
 	{
 		"playlistId": "pl-3",
@@ -24,6 +50,19 @@
 		"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
 		"playlistName": "Collab Mix: PirateKing x Samtopia",
 		"description": "A collaborative playlist for our favorite tunes.",
-		"tracksInfo": []
+		"tracksInfo": [
+			{
+				"trackId": "trk-36",
+				"positionInPlaylist": 1
+			},
+			{
+				"trackId": "trk-101",
+				"positionInPlaylist": 2
+			},
+			{
+				"trackId": "trk-24",
+				"positionInPlaylist": 3
+			}
+		]
 	}
 ]
