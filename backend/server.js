@@ -203,6 +203,19 @@ async function handler(request) {
 		options.status = 200;
 		return new Response(JSON.stringify(filteredPlaylists), options);
 	}
+	const playlistRoute = new URLPattern({ pathname: "/api/playlists/:id" });
+	if (playlistRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistRoute.exec(url).pathname.groups.id;
+		const foundPlaylist = Playlist.getPlaylistById(id);
+		if (!foundPlaylist) {
+			options.status = 404;
+			return new Response(JSON.stringify("Playlist not found"), options);
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundPlaylist), options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

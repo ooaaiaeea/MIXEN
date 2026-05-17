@@ -17,6 +17,16 @@ export class Playlist {
 		return playlists;
 	}
 
+	static getPlaylistById(id) {
+		const currentPlaylists = Playlist.getPlaylists();
+		for (const playlist of currentPlaylists) {
+			if (playlist.playlistId == id) {
+				return playlist;
+			}
+		}
+		return null;
+	}
+
 	static updatePlaylists(playlistsData) {
 		Deno.writeTextFileSync("./JSON/playlists.json", JSON.stringify(playlistsData, null, "\t"));
 	}
