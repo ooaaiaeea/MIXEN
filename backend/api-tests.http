@@ -294,3 +294,32 @@ Accept: application/json
 # Ensure you run a logout request (or clear your cookies) before running this test.
 GET {{baseUrl}}/api/users/usr-1
 Accept: application/json
+
+###
+
+# ============================================================================
+# GROUP: Playlists - Get All
+# ============================================================================
+
+# @name Get_Playlists_Success_200
+# Description: Test successful retrieval of all playlists.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/playlists
+Accept: application/json
+
+###
+
+# @name Get_Playlists_With_Query_Success_200
+# Description: Test successful retrieval of playlists filtered by a search query.
+# Ensure you run a successful login request before running this test.
+# Note: Searching for "Awesome" which should return the "Awesome Music Playlist".
+GET {{baseUrl}}/api/playlists?q=Awesome
+Accept: application/json
+
+###
+
+# @name Get_Playlists_Unauthorized_401
+# Description: Test error handling when attempting to retrieve playlists without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/playlists
+Accept: application/json

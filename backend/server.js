@@ -184,7 +184,25 @@ async function handler(request) {
 	}
 
 
-	
+	if (url.pathname == "/api/playlists" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const query = url.searchParams.get("q");
+		const allPlaylists = Playlist.getPlaylists(query);
+		const filteredPlaylists = [];
+		for (const playlist of allPlaylists) {
+			filteredPlaylists.push({
+				playlistId: playlist.playlistId,
+				ownerId: playlist.ownerId,
+				collaboratorIds: playlist.collaboratorIds,
+				image: playlist.image,
+				name: playlist.name,
+				description: playlist.description,
+				tracksInfo: playlist.tracksInfo,
+			});
+		}
+		options.status = 200;
+		return new Response(JSON.stringify(filteredPlaylists), options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

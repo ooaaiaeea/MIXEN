@@ -13,7 +13,7 @@
 				"ownerId": "usr-1",
 				"collaboratorIds": [],
 				"image": "https://static.vecteezy.com/system/resources/previews/070/802/343/non_2x/abstract-square-overlap-papercut-pattern-background-with-gradient-blue-and-purple-design-cool-banner-background-vector.jpg",
-				"playlistName": "Awesome Music Playlist",
+				"name": "Awesome Music Playlist",
 				"description": "I just love the sounds of these tracks!",
 				"tracksInfo": [
 					{ "trackId": "trk-100", "positionInPlaylist": 1 },
@@ -52,7 +52,7 @@
 				"ownerId": "usr-2",
 				"collaboratorIds": ["usr-1"],
 				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
-				"playlistName": "Collab Mix: PirateKing x Samtopia",
+				"name": "Collab Mix: PirateKing x Samtopia",
 				"description": "A collaborative playlist for our favorite tunes.",
 				"tracksInfo": [
 					{ "trackId": "trk-36", "positionInPlaylist": 1 },
@@ -102,7 +102,7 @@
 				"ownerId": "usr-2",
 				"collaboratorIds": [],
 				"image": "https://m.media-amazon.com/images/I/81Qd+SemebL._AC_UF894,1000_QL80_.jpg",
-				"playlistName": "Straw Hat Grooves",
+				"name": "Straw Hat Grooves",
 				"description": "My absolute favorite sea shanties and party music.",
 				"tracksInfo": [
 					{ "trackId": "trk-118", "positionInPlaylist": 3 },
@@ -141,7 +141,7 @@
 				"ownerId": "usr-2",
 				"collaboratorIds": ["usr-1"],
 				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
-				"playlistName": "Collab Mix: PirateKing x Samtopia",
+				"name": "Collab Mix: PirateKing x Samtopia",
 				"description": "A collaborative playlist for our favorite tunes.",
 				"tracksInfo": [
 					{ "trackId": "trk-36", "positionInPlaylist": 1 },
@@ -181,7 +181,7 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": "84c42b89-66d7-435c-b4c2-cfb2d27e5bd2",
+		"sessionId": null,
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],

@@ -1,10 +1,16 @@
 import { Track } from "./tracks.js";
+import { User } from "./users.js";
 
 export class Playlist {
-	static getPlaylists() {
+	static getPlaylists(query) {
 		const playlistsData = JSON.parse(Deno.readTextFileSync("./JSON/playlists.json"));
 		const playlists = [];
 		for (const playlistData of playlistsData) {
+			if (query) {
+				if (!playlistData.name.toLowerCase().includes(query.toLowerCase()) && !playlistData.description.toLowerCase().includes(query.toLowerCase()) && !User.getUserById(playlistData.ownerId).username.toLowerCase().includes(query.toLowerCase())) {
+					continue;
+				}
+			}
 			const playlistInstance = new Playlist(playlistData);
 			playlists.push(playlistInstance);
 		}
@@ -20,7 +26,7 @@ export class Playlist {
 		this.ownerId = data.ownerId;
 		this.collaboratorIds = data.collaboratorIds;
 		this.image = data.image;
-		this.playlistName = data.playlistName;
+		this.name = data.name;
 		this.description = data.description;
 		this.tracksInfo = data.tracksInfo;
 		this.tracks = this.getPlaylistTracks();
@@ -76,21 +82,19 @@ export class Playlist {
 				break;
 			}
 		}
-		if (foundPlaylistIndex !== undefined) {
-			currentPlaylists.splice(foundPlaylistIndex, 1);
-			Playlist.updatePlaylists(currentPlaylists);
-		}
+		currentPlaylists.splice(foundPlaylistIndex, 1);
+		Playlist.updatePlaylists(currentPlaylists);
 	}
 
 	update(changedPlaylist) {
 		const currentPlaylists = Playlist.getPlaylists();
-		const allowedKeys = ["collaboratorIds", "image", "playlistName", "description", "tracksInfo"];
+		const allowedKeys = ["collaboratorIds", "image", "name", "description", "tracksInfo"];
 		for (const playlist of currentPlaylists) {
 			if (playlist.playlistId == this.playlistId) {
 				for (const key in changedPlaylist) {
 					if (allowedKeys.includes(key)) {
-						playlist[key] = changedPlaylist[key]; // Update the object meant for the database
-						this[key] = changedPlaylist[key]; // Update the current in-memory object
+						playlist[key] = changedPlaylist[key];
+						this[key] = changedPlaylist[key];
 					}
 				}
 				break;

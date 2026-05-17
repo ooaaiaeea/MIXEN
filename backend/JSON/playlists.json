@@ -4,7 +4,7 @@
 		"ownerId": "usr-1",
 		"collaboratorIds": [],
 		"image": "https://static.vecteezy.com/system/resources/previews/070/802/343/non_2x/abstract-square-overlap-papercut-pattern-background-with-gradient-blue-and-purple-design-cool-banner-background-vector.jpg",
-		"playlistName": "Awesome Music Playlist",
+		"name": "Awesome Music Playlist",
 		"description": "I just love the sounds of these tracks!",
 		"tracksInfo": [
 			{
@@ -26,7 +26,7 @@
 		"ownerId": "usr-2",
 		"collaboratorIds": [],
 		"image": "https://m.media-amazon.com/images/I/81Qd+SemebL._AC_UF894,1000_QL80_.jpg",
-		"playlistName": "Straw Hat Grooves",
+		"name": "Straw Hat Grooves",
 		"description": "My absolute favorite sea shanties and party music.",
 		"tracksInfo": [
 			{
@@ -48,7 +48,7 @@
 		"ownerId": "usr-2",
 		"collaboratorIds": ["usr-1"],
 		"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
-		"playlistName": "Collab Mix: PirateKing x Samtopia",
+		"name": "Collab Mix: PirateKing x Samtopia",
 		"description": "A collaborative playlist for our favorite tunes.",
 		"tracksInfo": [
 			{
