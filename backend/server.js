@@ -67,6 +67,7 @@ async function handler(request) {
 		let newUser;
 		try {
 			newUser = await request.json();
+		// deno-lint-ignore no-unused-vars
 		} catch (error) {
 			options.status = 400;
 			return new Response(JSON.stringify("Invalid JSON format"), options);
@@ -88,6 +89,7 @@ async function handler(request) {
 		let loginData;
 		try {
 			loginData = await request.json();
+		// deno-lint-ignore no-unused-vars
 		} catch (error) {
 			options.status = 400;
 			return new Response(JSON.stringify("Invalid JSON format"), options);
@@ -126,6 +128,7 @@ async function handler(request) {
 		let changedUser;
 		try {
 			changedUser = await request.json();
+		// deno-lint-ignore no-unused-vars
 		} catch (error) {
 			options.status = 400;
 			return new Response(JSON.stringify("Invalid JSON format"), options);
@@ -202,6 +205,27 @@ async function handler(request) {
 		}
 		options.status = 200;
 		return new Response(JSON.stringify(filteredPlaylists), options);
+	}
+	if (url.pathname == "/api/playlists" && request.method == "POST") {
+		if (!currentUser) { return new Response(null, options) }
+		let newPlaylist;
+		try {
+			newPlaylist = await request.json();
+		// deno-lint-ignore no-unused-vars
+		} catch (error) {
+			options.status = 400;
+			return new Response(JSON.stringify("Invalid JSON format"), options);
+		}
+		newPlaylist.ownerId = currentUser.userId;
+		newPlaylist.collaboratorIds = [];
+		newPlaylist.tracksInfo = [];
+		const playlistInstance = new Playlist(newPlaylist);
+		options.status = playlistInstance.save();
+		if (options.status == 201) {
+			return new Response(null, options);
+		} else if (options.status == 400) {
+			return new Response(JSON.stringify("Missing keys in playlist"), options);
+		}
 	}
 	const playlistRoute = new URLPattern({ pathname: "/api/playlists/:id" });
 	if (playlistRoute.test(url) && request.method == "GET") {

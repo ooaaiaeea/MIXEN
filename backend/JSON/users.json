@@ -225,6 +225,17 @@
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],
-		"playlists": []
+		"playlists": [
+			{
+				"playlistId": "pl-4",
+				"ownerId": "usr-3",
+				"collaboratorIds": [],
+				"image": "https://example.com/image.jpg",
+				"name": "My New Test Playlist",
+				"description": "A playlist created via API test",
+				"tracksInfo": [],
+				"tracks": []
+			}
+		]
 	}
 ]

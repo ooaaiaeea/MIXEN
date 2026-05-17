@@ -351,3 +351,49 @@ Accept: application/json
 # Ensure you run a logout request (or clear your cookies) before running this test.
 GET {{baseUrl}}/api/playlists/pl-1
 Accept: application/json
+
+###
+
+# ============================================================================
+# GROUP: Playlists - Create
+# ============================================================================
+
+# @name Create_Playlist_Success_201
+# Description: Test successful creation of a new playlist.
+# Ensure you run a successful login request before running this test.
+POST {{baseUrl}}/api/playlists
+Content-Type: application/json
+
+{
+    "name": "My New Test Playlist",
+    "description": "A playlist created via API test",
+    "image": "https://example.com/image.jpg"
+}
+
+###
+
+# @name Create_Playlist_Missing_Data_400
+# Description: Test error handling when required keys are missing during playlist creation.
+# Ensure you run a successful login request before running this test.
+POST {{baseUrl}}/api/playlists
+Content-Type: application/json
+
+{
+    "description": "I forgot to include the playlist name!"
+}
+
+###
+
+# @name Create_Playlist_Unauthorized_401
+# Description: Test error handling when attempting to create a playlist without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+POST {{baseUrl}}/api/playlists
+Content-Type: application/json
+
+{
+    "name": "My New Test Playlist",
+    "description": "A playlist created via API test",
+    "image": "https://example.com/image.jpg"
+}
+
+###

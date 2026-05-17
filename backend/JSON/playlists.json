@@ -19,6 +19,32 @@
 				"trackId": "trk-20",
 				"positionInPlaylist": 3
 			}
+		],
+		"tracks": [
+			{
+				"trackId": "trk-100",
+				"albumId": "alb-18",
+				"artistId": "art-3",
+				"duration": "04:30",
+				"name": "Cold Wind",
+				"positionInAlbum": 4
+			},
+			{
+				"trackId": "trk-171",
+				"albumId": "alb-30",
+				"artistId": "art-5",
+				"duration": "03:40",
+				"name": "Dim Lights",
+				"positionInAlbum": 3
+			},
+			{
+				"trackId": "trk-20",
+				"albumId": "alb-5",
+				"artistId": "art-1",
+				"duration": "04:40",
+				"name": "Deep Slumber",
+				"positionInAlbum": 8
+			}
 		]
 	},
 	{
@@ -41,12 +67,40 @@
 				"trackId": "trk-148",
 				"positionInPlaylist": 2
 			}
+		],
+		"tracks": [
+			{
+				"trackId": "trk-105",
+				"albumId": "alb-18",
+				"artistId": "art-3",
+				"duration": "04:40",
+				"name": "Blind Faith",
+				"positionInAlbum": 9
+			},
+			{
+				"trackId": "trk-148",
+				"albumId": "alb-27",
+				"artistId": "art-5",
+				"duration": "03:15",
+				"name": "Autumn Leaves",
+				"positionInAlbum": 2
+			},
+			{
+				"trackId": "trk-118",
+				"albumId": "alb-22",
+				"artistId": "art-4",
+				"duration": "03:55",
+				"name": "Mended",
+				"positionInAlbum": 3
+			}
 		]
 	},
 	{
 		"playlistId": "pl-3",
 		"ownerId": "usr-2",
-		"collaboratorIds": ["usr-1"],
+		"collaboratorIds": [
+			"usr-1"
+		],
 		"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
 		"name": "Collab Mix: PirateKing x Samtopia",
 		"description": "A collaborative playlist for our favorite tunes.",
@@ -63,6 +117,42 @@
 				"trackId": "trk-24",
 				"positionInPlaylist": 10
 			}
+		],
+		"tracks": [
+			{
+				"trackId": "trk-36",
+				"albumId": "alb-6",
+				"artistId": "art-1",
+				"duration": "05:05",
+				"name": "Return of Light",
+				"positionInAlbum": 12
+			},
+			{
+				"trackId": "trk-101",
+				"albumId": "alb-18",
+				"artistId": "art-3",
+				"duration": "03:55",
+				"name": "Empty Streets",
+				"positionInAlbum": 5
+			},
+			{
+				"trackId": "trk-24",
+				"albumId": "alb-5",
+				"artistId": "art-1",
+				"duration": "05:20",
+				"name": "Morning Light",
+				"positionInAlbum": 12
+			}
 		]
+	},
+	{
+		"playlistId": "pl-4",
+		"ownerId": "usr-3",
+		"collaboratorIds": [],
+		"image": "https://example.com/image.jpg",
+		"name": "My New Test Playlist",
+		"description": "A playlist created via API test",
+		"tracksInfo": [],
+		"tracks": []
 	}
 ]

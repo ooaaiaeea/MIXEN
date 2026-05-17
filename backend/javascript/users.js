@@ -69,14 +69,12 @@ export class User {
 		}
 		const currentUsers = User.getUsers();
 		let highestUserId = 0;
-		if (currentUsers.length != 0) {
-			for (const user of currentUsers) {
-				if (highestUserId < parseInt(user.userId.split("-")[1])) {
-					highestUserId = parseInt(user.userId.split("-")[1]);
-				}
-				if (user.email === this.email || user.username === this.username) {
-					return 409;
-				}
+		for (const user of currentUsers) {
+			if (highestUserId < parseInt(user.userId.split("-")[1])) {
+				highestUserId = parseInt(user.userId.split("-")[1]);
+			}
+			if (user.email === this.email || user.username === this.username) {
+				return 409;
 			}
 		}
 		this.userId = "usr-" + (highestUserId +1);

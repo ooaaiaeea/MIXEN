@@ -70,6 +70,12 @@ export class Playlist {
 	}
 
 	save() {
+		const requiredKeys = ["ownerId", "image", "name", "description"];
+		for (const key of requiredKeys) {
+			if (!this[key]) {
+				return 400;
+			}
+		}
 		const currentPlaylists = Playlist.getPlaylists();
 		let highestPlaylistId = 0;
 		for (const playlist of currentPlaylists) {
@@ -78,9 +84,9 @@ export class Playlist {
 			}
 		}
 		this.playlistId = "pl-" + (highestPlaylistId + 1);
-		this.tracksInfo = [];
 		currentPlaylists.push(this);
 		Playlist.updatePlaylists(currentPlaylists);
+		return 201;
 	}
 
 	delete() {
