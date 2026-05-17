@@ -397,3 +397,36 @@ Content-Type: application/json
 }
 
 ###
+
+# ============================================================================
+# GROUP: Playlists - Delete
+# ============================================================================
+
+# @name Delete_Playlist_Success_204
+# Description: Test successful deletion of a playlist.
+# Ensure you run a successful login request (as testUser_api) before running this test.
+DELETE {{baseUrl}}/api/playlists/pl-4
+
+###
+
+# @name Delete_Playlist_Not_Associated_403
+# Description: Test error handling when attempting to delete a playlist the user is not associated with.
+# Ensure you run a successful login request before running this test.
+DELETE {{baseUrl}}/api/playlists/pl-1
+
+###
+
+# @name Delete_Playlist_Not_Owner_403
+# Description: Test error handling when attempting to delete a playlist the user is associated with but does not own.
+# Ensure you run a successful login request before running this test.
+# Note: testUser_api is a collaborator on pl-3, but not an owner.
+DELETE {{baseUrl}}/api/playlists/pl-3
+
+###
+
+# @name Delete_Playlist_Unauthorized_401
+# Description: Test error handling when attempting to delete a playlist without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+DELETE {{baseUrl}}/api/playlists/pl-4
+
+###

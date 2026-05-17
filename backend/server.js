@@ -240,6 +240,22 @@ async function handler(request) {
 			return new Response(JSON.stringify(foundPlaylist), options);
 		}
 	}
+	if (playlistRoute.test(url) && request.method == "DELETE") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistRoute.exec(url).pathname.groups.id;
+		for (const playlist of currentUser.playlists) {
+			if (playlist.playlistId == id) {
+				options.status = playlist.delete(currentUser.userId)
+				if (options.status == 403) {
+					return new Response(JSON.stringify("User isn't owner of playlist"), options);
+				} else if (options.status == 204) {
+					return new Response(null, options);
+				}
+			}
+		}
+		options.status = 403;
+		return new Response(JSON.stringify("User not associated with playlist"), options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

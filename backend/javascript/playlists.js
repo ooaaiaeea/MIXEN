@@ -89,7 +89,10 @@ export class Playlist {
 		return 201;
 	}
 
-	delete() {
+	delete(currentUserId) {
+		if (this.ownerId != currentUserId) {
+			return 403;
+		}
 		const currentPlaylists = Playlist.getPlaylists();
 		let foundPlaylistIndex;
 		for (let i = 0; i < currentPlaylists.length; i++) {
@@ -100,6 +103,7 @@ export class Playlist {
 		}
 		currentPlaylists.splice(foundPlaylistIndex, 1);
 		Playlist.updatePlaylists(currentPlaylists);
+		return 204;
 	}
 
 	update(changedPlaylist) {

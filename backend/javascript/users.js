@@ -99,7 +99,7 @@ export class User {
 		}
 		for (const playlist of this.playlists) {
 			if (playlist.ownerId == this.userId) {
-				playlist.delete();
+				playlist.delete(this.userId);
 				continue;
 			}
 			for (let i = 0; i < playlist.collaboratorIds.length; i++) {

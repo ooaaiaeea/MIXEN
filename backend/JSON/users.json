@@ -60,7 +60,8 @@
 				"playlistId": "pl-3",
 				"ownerId": "usr-2",
 				"collaboratorIds": [
-					"usr-1"
+					"usr-1",
+					"usr-3"
 				],
 				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
 				"name": "Collab Mix: PirateKing x Samtopia",
@@ -169,7 +170,8 @@
 				"playlistId": "pl-3",
 				"ownerId": "usr-2",
 				"collaboratorIds": [
-					"usr-1"
+					"usr-1",
+					"usr-3"
 				],
 				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
 				"name": "Collab Mix: PirateKing x Samtopia",
@@ -221,11 +223,62 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": null,
+		"sessionId": "05f1840c-2ead-4365-92ed-b6c40ebb60d1",
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],
 		"playlists": [
+			{
+				"playlistId": "pl-3",
+				"ownerId": "usr-2",
+				"collaboratorIds": [
+					"usr-1",
+					"usr-3"
+				],
+				"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
+				"name": "Collab Mix: PirateKing x Samtopia",
+				"description": "A collaborative playlist for our favorite tunes.",
+				"tracksInfo": [
+					{
+						"trackId": "trk-36",
+						"positionInPlaylist": 1
+					},
+					{
+						"trackId": "trk-101",
+						"positionInPlaylist": 5
+					},
+					{
+						"trackId": "trk-24",
+						"positionInPlaylist": 10
+					}
+				],
+				"tracks": [
+					{
+						"trackId": "trk-36",
+						"albumId": "alb-6",
+						"artistId": "art-1",
+						"duration": "05:05",
+						"name": "Return of Light",
+						"positionInAlbum": 12
+					},
+					{
+						"trackId": "trk-101",
+						"albumId": "alb-18",
+						"artistId": "art-3",
+						"duration": "03:55",
+						"name": "Empty Streets",
+						"positionInAlbum": 5
+					},
+					{
+						"trackId": "trk-24",
+						"albumId": "alb-5",
+						"artistId": "art-1",
+						"duration": "05:20",
+						"name": "Morning Light",
+						"positionInAlbum": 12
+					}
+				]
+			},
 			{
 				"playlistId": "pl-4",
 				"ownerId": "usr-3",

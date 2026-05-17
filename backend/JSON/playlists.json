@@ -99,7 +99,8 @@
 		"playlistId": "pl-3",
 		"ownerId": "usr-2",
 		"collaboratorIds": [
-			"usr-1"
+			"usr-1",
+			"usr-3"
 		],
 		"image": "https://assets.weforum.org/article/image/2G5YoxR8SpOyVG_qfM_8UcUZ-Fe4F07CQj4EBVwOp2c.jpg",
 		"name": "Collab Mix: PirateKing x Samtopia",
@@ -144,15 +145,5 @@
 				"positionInAlbum": 12
 			}
 		]
-	},
-	{
-		"playlistId": "pl-4",
-		"ownerId": "usr-3",
-		"collaboratorIds": [],
-		"image": "https://example.com/image.jpg",
-		"name": "My New Test Playlist",
-		"description": "A playlist created via API test",
-		"tracksInfo": [],
-		"tracks": []
 	}
 ]
