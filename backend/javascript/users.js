@@ -99,10 +99,21 @@ export class User {
 				break;
 			}
 		}
-		if (foundUserIndex !== undefined) {
-			currentUsers.splice(foundUserIndex, 1);
-			User.updateUsers(currentUsers);
+		for (const playlist of this.playlists) {
+			if (playlist.ownerId == this.userId) {
+				playlist.delete();
+				continue;
+			}
+			for (let i = 0; i < playlist.collaboratorIds.length; i++) {
+				if (playlist.collaboratorIds[i] == this.userId) {
+					playlist.collaboratorIds.splice(i, 1);
+					playlist.update(playlist);
+					break;
+				}
+			}
 		}
+		currentUsers.splice(foundUserIndex, 1);
+		User.updateUsers(currentUsers);
 	}
 
 	update(changedUser) {
