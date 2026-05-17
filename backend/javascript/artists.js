@@ -12,7 +12,7 @@ export class Artist {
 	}
 
 	constructor(data) {
-		this.artistId = data.artist_id;
+		this.artistId = data.artistId;
 		this.name = data.name;
 		this.albums = this.getArtistAlbums();
 	}

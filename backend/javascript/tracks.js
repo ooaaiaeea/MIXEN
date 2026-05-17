@@ -10,11 +10,11 @@ export class Track {
 	}
 
 	constructor(data) {
-		this.trackId = data.track_id;
-		this.albumId = data.album_id;
-		this.artistId = data.artist_id;
+		this.trackId = data.trackId;
+		this.albumId = data.albumId;
+		this.artistId = data.artistId;
 		this.duration = data.duration;
 		this.name = data.name;
-		this.positionInAlbum = data.position_in_album;
+		this.positionInAlbum = data.positionInAlbum;
 	}
 }

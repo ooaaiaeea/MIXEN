@@ -84,11 +84,11 @@ export class Playlist {
 
 	update(changedPlaylist) {
 		const currentPlaylists = Playlist.getPlaylists();
-		const ALLOWED_KEYS = ["collaboratorIds", "image", "playlistName", "description", "tracksInfo"];
+		const allowedKeys = ["collaboratorIds", "image", "playlistName", "description", "tracksInfo"];
 		for (const playlist of currentPlaylists) {
 			if (playlist.playlistId == this.playlistId) {
 				for (const key in changedPlaylist) {
-					if (ALLOWED_KEYS.includes(key)) {
+					if (allowedKeys.includes(key)) {
 						playlist[key] = changedPlaylist[key]; // Update the object meant for the database
 						this[key] = changedPlaylist[key]; // Update the current in-memory object
 					}

@@ -12,12 +12,12 @@ export class Album {
 	}
 
 	constructor(data) {
-		this.albumId = data.album_id;
-		this.totalTracks = data.total_tracks;
+		this.albumId = data.albumId;
+		this.totalTracks = data.totalTracks;
 		this.image = data.image;
 		this.name = data.name;
-		this.releaseDate = data.release_date;
-		this.artistId = data.artist_id;
+		this.releaseDate = data.releaseDate;
+		this.artistId = data.artistId;
 		this.genre = data.genre;
 		this.tracks = this.getAlbumTracks();
 	}

@@ -61,8 +61,8 @@ export class User {
 	}
 
 	save() {
-		const REQUIRED_KEYS = ["email", "username", "password", "sessionId"];
-		for (const key of REQUIRED_KEYS) {
+		const requiredKeys = ["email", "username", "password", "sessionId"];
+		for (const key of requiredKeys) {
 			if (!this[key]) {
 				return 400;
 			}
@@ -106,12 +106,12 @@ export class User {
 	}
 
 	update(changedUser) {
-		const ALLOWED_KEYS = ["email", "username", "password", "image", "likedPlaylists", "sessionId"];
+		const allowedKeys = ["email", "username", "password", "image", "likedPlaylists", "sessionId"];
 		const currentUsers = User.getUsers();
 		for (const user of currentUsers) {
 			if (user.userId == this.userId) {
 				for (const key in changedUser) {
-					if (ALLOWED_KEYS.includes(key)) {
+					if (allowedKeys.includes(key)) {
 						user[key] = changedUser[key];
 						this[key] = changedUser[key];
 					}
@@ -123,11 +123,11 @@ export class User {
 	}
 
 	editProfile(changedUser) {
-		const ALLOWED_KEYS = ["email", "username", "password", "image"];
+		const allowedKeys = ["email", "username", "password", "image"];
 		let foundKey = false;
 		const keysToUpdate = {};
 		for (const key in changedUser) {
-			if (ALLOWED_KEYS.includes(key)) {
+			if (allowedKeys.includes(key)) {
 				keysToUpdate[key] = changedUser[key];
 				foundKey = true;
 			}
