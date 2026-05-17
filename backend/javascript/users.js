@@ -22,7 +22,7 @@ export class User {
 	}
 
 	static updateUsers(usersData) {
-		Deno.writeTextFileSync("./JSON/users.json", JSON.stringify(usersData));
+		Deno.writeTextFileSync("./JSON/users.json", JSON.stringify(usersData, null, "\t"));
 	}
 
 	static loginUser(loginData) {

@@ -18,7 +18,7 @@ export class Playlist {
 	}
 
 	static updatePlaylists(playlistsData) {
-		Deno.writeTextFileSync("./JSON/playlists.json", JSON.stringify(playlistsData));
+		Deno.writeTextFileSync("./JSON/playlists.json", JSON.stringify(playlistsData, null, "\t"));
 	}
 
 	constructor(data) {
