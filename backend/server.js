@@ -64,7 +64,13 @@ async function handler(request) {
 
 
 	if (url.pathname == "/api/auth/register" && request.method == "POST") {
-		const newUser = await request.json();
+		let newUser;
+		try {
+			newUser = await request.json();
+		} catch (error) {
+			options.status = 400;
+			return new Response(JSON.stringify("Invalid JSON format"), options);
+		}
 		newUser.sessionId = createSessionId();
 		const userInstance = new User(newUser);
 		options.status = userInstance.save();
@@ -79,7 +85,13 @@ async function handler(request) {
 		}
 	}
 	if (url.pathname == "/api/auth/login" && request.method == "POST") {
-		const loginData = await request.json();
+		let loginData;
+		try {
+			loginData = await request.json();
+		} catch (error) {
+			options.status = 400;
+			return new Response(JSON.stringify("Invalid JSON format"), options);
+		}
 		const response = User.loginUser(loginData);
 		if (response[0] == 200) {
 			const loggedInUser = response[1];
@@ -111,7 +123,13 @@ async function handler(request) {
 	}
 	if (url.pathname == "/api/auth/edit" && request.method == "PATCH") {
 		if (!currentUser) { return new Response(null, options) }
-		const changedUser = await request.json();
+		let changedUser;
+		try {
+			changedUser = await request.json();
+		} catch (error) {
+			options.status = 400;
+			return new Response(JSON.stringify("Invalid JSON format"), options);
+		}
 		options.status = currentUser.editProfile(changedUser);
 		if (options.status == 409) {
 			return new Response(JSON.stringify("Email or username already in use"), options);
@@ -164,6 +182,9 @@ async function handler(request) {
 			return new Response(JSON.stringify(filteredUser), options);
 		}
 	}
+
+
+	
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {
