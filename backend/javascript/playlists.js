@@ -70,11 +70,14 @@ export class Playlist {
 	}
 
 	save() {
-		const requiredKeys = ["ownerId", "image", "name", "description"];
+		const requiredKeys = ["ownerId", "name", "description"];
 		for (const key of requiredKeys) {
 			if (!this[key]) {
 				return 400;
 			}
+		}
+		if (!this.image) {
+			this.image = "./images/playlists/playlist_placeholder.jpeg";
 		}
 		const currentPlaylists = Playlist.getPlaylists();
 		let highestPlaylistId = 0;

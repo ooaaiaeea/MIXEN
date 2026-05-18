@@ -366,8 +366,7 @@ Content-Type: application/json
 
 {
     "name": "My New Test Playlist",
-    "description": "A playlist created via API test",
-    "image": "https://example.com/image.jpg"
+    "description": "A playlist created via API test"
 }
 
 ###
@@ -392,8 +391,7 @@ Content-Type: application/json
 
 {
     "name": "My New Test Playlist",
-    "description": "A playlist created via API test",
-    "image": "https://example.com/image.jpg"
+    "description": "A playlist created via API test"
 }
 
 ###
