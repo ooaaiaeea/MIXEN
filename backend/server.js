@@ -320,6 +320,15 @@ async function handler(request) {
 	}
 
 
+	if (url.pathname == "/api/tracks" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const query = url.searchParams.get("q");
+		const allTracks = Track.getTracks(query);
+		options.status = 200;
+		return new Response(JSON.stringify(allTracks), options);
+	}
+
+
 	if (url.pathname == "/themix" && request.method == "GET") {
 		if (currentUser) {
 			return serveFile(request, "./../frontend/home.html")

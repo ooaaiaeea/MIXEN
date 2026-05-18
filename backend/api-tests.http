@@ -589,3 +589,31 @@ DELETE {{baseUrl}}/api/playlists/pl-1/like
 DELETE {{baseUrl}}/api/playlists/pl-1/like
 
 ###
+
+# ============================================================================
+# GROUP: Tracks - Get All
+# ============================================================================
+
+# @name Get_Tracks_Success_200
+# Description: Test successful retrieval of all tracks.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/tracks
+Accept: application/json
+
+###
+
+# @name Get_Tracks_With_Query_Success_200
+# Description: Test successful retrieval of tracks filtered by a search query.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/tracks?q=Light
+Accept: application/json
+
+###
+
+# @name Get_Tracks_Unauthorized_401
+# Description: Test error handling when attempting to retrieve tracks without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/tracks
+Accept: application/json
+
+###
