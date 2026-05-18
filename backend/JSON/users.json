@@ -278,17 +278,17 @@
 						"positionInAlbum": 12
 					}
 				]
-			},
-			{
-				"playlistId": "pl-4",
-				"ownerId": "usr-3",
-				"collaboratorIds": [],
-				"image": "https://example.com/image.jpg",
-				"name": "My New Test Playlist",
-				"description": "A playlist created via API test",
-				"tracksInfo": [],
-				"tracks": []
 			}
 		]
+	},
+	{
+		"email": "otto@otto.com",
+		"username": "otto",
+		"password": "otto",
+		"sessionId": "2dc7ee6f-42c3-4e89-b67c-dd58b22e9709",
+		"image": "./images/users/placeholder_red.png",
+		"userId": "usr-4",
+		"likedPlaylists": [],
+		"playlists": []
 	}
 ]

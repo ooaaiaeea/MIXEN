@@ -1,5 +1,5 @@
 const registerApi = new API();
-const registerUi = new registerUi();
+const registerUi = new UI();
 
 async function register(event) {
     event.preventDefault();
