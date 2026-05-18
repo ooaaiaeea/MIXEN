@@ -37,4 +37,4 @@ async function register(event) {
 const registerForm = document.getElementById("register-form");
 let loading = document.getElementById("loading");
 
-registerForm.addEventlistener("submit", register)
+registerForm.addEventListener("submit", register)
