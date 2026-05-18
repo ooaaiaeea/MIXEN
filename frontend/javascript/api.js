@@ -64,7 +64,7 @@ class API {
         }
     }
 
-    async authenticationCheck(){
+    async getCurrentUser() {
         const response = await fetch("/api/auth/me", {
             method: "GET",
             credentials: "include",
@@ -72,16 +72,31 @@ class API {
                 "Accept": "application/json"
             }
         });
-
-        if (response.status == 401){
-            throw new Error("Unauthorized: User not logged in")
-        }
-
+    
         if (!response.ok) {
-            throw new Error("Something went wrong")
+            throw new Error("Error: could not get current user");
+        }
+    
+        return await response.json();
+    }
+    
+    async authenticationCheck() {
+        await this.getCurrentUser();
+    }
+
+    async getUserById(userId) {
+        const response = await fetch(`api/users/${userId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Could not get user id");
         }
 
-        return response;
+        return await response.json();
     }
 
     async getPlaylists() {
@@ -103,5 +118,20 @@ class API {
         const playlists = await response.json();
 
         return playlists;
+    }
+
+    async getPlaylistById(playlistId) {
+        const response = await fetch(`/api/playlists/${playlistsId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not get playlist by id");
+        }
+        return await response.json();
     }
 }

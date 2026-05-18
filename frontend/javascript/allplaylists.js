@@ -1,20 +1,24 @@
 const allplaylistsApi = new API();
-const allplaylistsUi = new UI();
+const allplaylistsui = new UI();
 
-let playlists = document.querySelector("#playlists");
-let loading = document.querySelector("#loading");
-
-async function getPlaylists() {
+async function loadPlaylists(){
     try {
-        allplaylistsUi.showLoading(loading, "Loading playlists...");
+        allplaylistsui.showLoading(loading, "Loading playlists...");
+
+        allplaylistsApi.getPlaylists()
 
         const allPlaylists = await allplaylistsApi.getPlaylists();
 
-        allplaylistsUi.renderPlaylists(allPlaylists, playlists, loading);
+        allplaylistsui.renderPlaylists(allPlaylists, playlistsContainer)
+        allplaylistsui.clear(loading)
 
-    } catch (error) {
-        allplaylistsUi.showError(loading, error.message);
+    } catch(error) {
+        allplaylistsui.showError(loading, error.message);
     }
 }
 
-getPlaylists();
+
+let playlistsContainer = document.querySelector("#playlists");
+let loading = document.querySelector("#loading");
+
+loadPlaylists();

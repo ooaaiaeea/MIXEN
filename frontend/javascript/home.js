@@ -2,24 +2,39 @@ console.count("home.js loaded")
 const homeApi = new API();
 const homeUi = new UI();
 
-async function loadPlaylists(){
+async function loadUserPlaylists(){
     try {
         homeUi.showLoading(loading, "Loading playlists...");
 
-        homeApi.getPlaylists()
+        const currentUser = await homeApi.getCurrentUser();
 
-        //BYT TILL USER PLAYLISTS
-        const allPlaylists = await homeApi.getPlaylists();
+        const userInfo = await homeApi.getUserById(currentUser.userId)
 
-        homeUi.renderPlaylists(allPlaylists, playlistsContainer)
+        const userPlaylists = userInfo.playlists;
+
+        const likedPlaylists = await getLikedPlaylistsById(userInfo.likedPlaylists);
+
+        homeUi.renderPlaylists(userPlaylists, userPlaylistsContainer)
+        homeUi.renderPlaylists(likedPlaylists, likedPlaylistsContainer)
+        homeUi.clear(loading)
 
     } catch(error) {
         homeUi.showError(loading, error.message);
     }
 }
 
+ async function getLikedPlaylistsById(playlistIds){
+    let likedPlaylists = [];
+    for (let playlistId of playlistIds) {
+        const playlist = await homeApi.getPlaylistById(playlistId);
+        likedPlaylists.push(playlist);
+    }
+    return likedPlaylists;
+}
 
-let playlistsContainer = document.querySelector("#playlists");
+
+let userPlaylistsContainer = document.querySelector("#user-playlists");
+let likedPlaylistsContainer = document.querySelector("#liked-playlists")
 let loading = document.querySelector("#loading");
 
-loadPlaylists();
+loadUserPlaylists();

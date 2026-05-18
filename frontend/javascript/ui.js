@@ -51,7 +51,7 @@ class UI {
         let trackPreview = this.previewTracks(playlist);
 
         let playlistLink = document.createElement("a");
-        playlistLink.href = `playlist.html?id=${playlist.playlist_id}`
+        playlistLink.href = `playlist.html?id=${playlist.playlistId}`
         playlistLink.textContent = "view playlist";
 
 
