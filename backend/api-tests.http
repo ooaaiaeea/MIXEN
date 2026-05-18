@@ -563,3 +563,29 @@ POST {{baseUrl}}/api/playlists/pl-1/like
 Content-Type: application/json
 
 ###
+
+# ============================================================================
+# GROUP: Playlists - Unlike
+# ============================================================================
+
+# @name Unlike_Playlist_Success_204
+# Description: Test successful un-liking of a playlist.
+# Ensure you run a successful login request and the Like_Playlist_Success_201 test before running this test.
+DELETE {{baseUrl}}/api/playlists/pl-1/like
+
+###
+
+# @name Unlike_Playlist_Not_Liked_404
+# Description: Test error handling when attempting to unlike a playlist that is not currently liked.
+# Ensure you run a successful login request before running this test.
+# You may need to run this after Unlike_Playlist_Success_204 if pl-1 was previously liked.
+DELETE {{baseUrl}}/api/playlists/pl-1/like
+
+###
+
+# @name Unlike_Playlist_Unauthorized_401
+# Description: Test error handling when attempting to unlike a playlist without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+DELETE {{baseUrl}}/api/playlists/pl-1/like
+
+###

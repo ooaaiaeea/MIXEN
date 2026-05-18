@@ -304,6 +304,20 @@ async function handler(request) {
 		options.status = 201;
 		return new Response(null, options);
 	}
+	if (playlistLikeRoute.test(url) && request.method == "DELETE") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistLikeRoute.exec(url).pathname.groups.id;
+		for (let i = 0; i < currentUser.likedPlaylists.length; i++) {
+			if (currentUser.likedPlaylists[i] == id) {
+				currentUser.likedPlaylists.splice(i, 1);
+				currentUser.update( { likedPlaylists: currentUser.likedPlaylists } )
+				options.status = 204;
+				return new Response(null, options);
+			}
+		}
+		options.status = 404;
+		return new Response(JSON.stringify("Playlist not already liked"), options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {
