@@ -376,6 +376,22 @@ async function handler(request) {
 	}
 
 
+	if (url.pathname == "/api/artists" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) };
+		const query = url.searchParams.get("q");
+		const allArtists = Artist.getArtists(query);
+		const filteredArtists = [];
+		for (const artist of allArtists) {
+			filteredArtists.push({
+				artistId: artist.artistId,
+				name: artist.name,
+			});
+		}
+		options.status = 200;
+		return new Response(JSON.stringify(filteredArtists), options);
+	}
+
+
 	if (url.pathname == "/themix" && request.method == "GET") {
 		if (currentUser) {
 			return serveFile(request, "./../frontend/home.html")

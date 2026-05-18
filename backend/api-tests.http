@@ -701,3 +701,31 @@ GET {{baseUrl}}/api/albums/alb-1
 Accept: application/json
 
 ###
+
+# ============================================================================
+# GROUP: Artists - Get All
+# ============================================================================
+
+# @name Get_Artists_Success_200
+# Description: Test successful retrieval of all artists.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/artists
+Accept: application/json
+
+###
+
+# @name Get_Artists_With_Query_Success_200
+# Description: Test successful retrieval of artists filtered by a search query.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/artists?q=Luna
+Accept: application/json
+
+###
+
+# @name Get_Artists_Unauthorized_401
+# Description: Test error handling when attempting to retrieve artists without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/artists
+Accept: application/json
+
+###
