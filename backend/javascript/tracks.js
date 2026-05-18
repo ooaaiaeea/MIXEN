@@ -14,6 +14,16 @@ export class Track {
 		return tracks;
 	}
 
+	static getTrackById(id) {
+		const currentTracks = Track.getTracks();
+		for (const track of currentTracks) {
+			if (track.trackId == id) {
+				return track;
+			}
+		}
+		return null;
+	}
+
 	constructor(data) {
 		this.trackId = data.trackId;
 		this.albumId = data.albumId;

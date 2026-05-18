@@ -617,3 +617,31 @@ GET {{baseUrl}}/api/tracks
 Accept: application/json
 
 ###
+
+# ============================================================================
+# GROUP: Tracks - Get By ID
+# ============================================================================
+
+# @name Get_Track_By_Id_Success_200
+# Description: Test successful retrieval of a specific track by ID.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/tracks/trk-100
+Accept: application/json
+
+###
+
+# @name Get_Track_By_Id_Not_Found_404
+# Description: Test error handling when attempting to retrieve a nonexistent track.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/tracks/trk-999
+Accept: application/json
+
+###
+
+# @name Get_Track_By_Id_Unauthorized_401
+# Description: Test error handling when attempting to retrieve a track without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/tracks/trk-100
+Accept: application/json
+
+###

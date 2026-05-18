@@ -327,6 +327,19 @@ async function handler(request) {
 		options.status = 200;
 		return new Response(JSON.stringify(allTracks), options);
 	}
+	const trackRoute = new URLPattern({ pathname: "/api/tracks/:id" });
+	if (trackRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = trackRoute.exec(url).pathname.groups.id;
+		const foundTrack = Track.getTrackById(id);
+		if (!foundTrack) {
+			options.status = 404;
+			return new Response(JSON.stringify("Track not found"), options)
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundTrack), options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {
