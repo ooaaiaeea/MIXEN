@@ -390,6 +390,19 @@ async function handler(request) {
 		options.status = 200;
 		return new Response(JSON.stringify(filteredArtists), options);
 	}
+	const artistRoute = new URLPattern({ pathname: "/api/artists/:id" });
+	if (artistRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = artistRoute.exec(url).pathname.groups.id;
+		const foundArtist = Artist.getArtistById(id);
+		if (!foundArtist) {
+			options.status = 404;
+			return new Response(JSON.stringify("Artist not found"), options);
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundArtist), options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

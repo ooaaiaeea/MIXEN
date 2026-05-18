@@ -223,7 +223,7 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": null,
+		"sessionId": "23dc8e47-3a4e-40db-ba38-8a410ef4eb11",
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],

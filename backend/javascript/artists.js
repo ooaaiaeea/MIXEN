@@ -16,6 +16,16 @@ export class Artist {
 		return artists;
 	}
 
+	static getArtistById(id) {
+		const currentArtists = Artist.getArtists();
+		for (const artist of currentArtists) {
+			if (artist.artistId == id) {
+				return artist;
+			}
+		}
+		return null;
+	}
+
 	constructor(data) {
 		this.artistId = data.artistId;
 		this.name = data.name;
