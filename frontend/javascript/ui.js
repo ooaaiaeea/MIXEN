@@ -39,12 +39,7 @@ class UI {
 
         let playlistImage = document.createElement("img");
         playlistImage.classList.add("playlist-image");
-
-        if (playlist.image) {
-            playlistImage.src = playlist.image;
-        } else {
-            playlistImage.src = "../backend/images/playlists/playlistplaceholder.jpeg"
-        }
+        playlistImage.src = playlist.image;
 
 
         let title = document.createElement("h2");

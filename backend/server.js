@@ -416,6 +416,9 @@ async function handler(request) {
 	if (addTracksRoute.test(url)){
 		return serveFile(request, "./../frontend/addtracks.html")
 	}
+	if (url.pathname.startsWith("/images/")) {
+		return serveDir(request, {fsRoot: "."});
+	}
 	return serveDir(request, {fsRoot: "./../frontend"});
 }
 
