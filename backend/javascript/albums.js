@@ -16,6 +16,16 @@ export class Album {
 		return albums;
 	}
 
+	static getAlbumById(id) {
+		const currentAlbums = Album.getAlbums();
+		for (const album of currentAlbums) {
+			if (album.albumId == id) {
+				return album;
+			}
+		}
+		return null;
+	}
+
 	constructor(data) {
 		this.albumId = data.albumId;
 		this.totalTracks = data.totalTracks;

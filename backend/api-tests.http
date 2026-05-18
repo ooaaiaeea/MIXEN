@@ -673,3 +673,31 @@ GET {{baseUrl}}/api/albums
 Accept: application/json
 
 ###
+
+# ============================================================================
+# GROUP: Albums - Get By ID
+# ============================================================================
+
+# @name Get_Album_By_Id_Success_200
+# Description: Test successful retrieval of a specific album by ID.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/albums/alb-1
+Accept: application/json
+
+###
+
+# @name Get_Album_By_Id_Not_Found_404
+# Description: Test error handling when attempting to retrieve a nonexistent album.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/albums/alb-999
+Accept: application/json
+
+###
+
+# @name Get_Album_By_Id_Unauthorized_401
+# Description: Test error handling when attempting to retrieve an album without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/albums/alb-1
+Accept: application/json
+
+###

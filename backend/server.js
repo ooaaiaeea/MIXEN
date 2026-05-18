@@ -361,6 +361,19 @@ async function handler(request) {
 		options.status = 200;
 		return new Response(JSON.stringify(filteredAlbums), options);
 	}
+	const albumRoute = new URLPattern({ pathname: "/api/albums/:id" });
+	if (albumRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = albumRoute.exec(url).pathname.groups.id;
+		const foundAlbum = Album.getAlbumById(id);
+		if (!foundAlbum) {
+			options.status = 404;
+			return new Response(JSON.stringify("Album not found"), options);
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundAlbum), options);
+		}
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {
