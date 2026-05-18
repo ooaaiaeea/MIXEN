@@ -342,6 +342,27 @@ async function handler(request) {
 	}
 
 
+	if (url.pathname == "/api/albums" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const query = url.searchParams.get("q");
+		const allAlbums = Album.getAlbums(query);
+		const filteredAlbums = [];
+		for (const album of allAlbums) {
+			filteredAlbums.push({
+				albumId: album.albumId,
+				totalTracks: album.totalTracks,
+				image: album.image,
+				name: album.name,
+				releaseDate: album.releaseDate,
+				artistId: album.artistId,
+				genre: album.genre,
+			});
+		}
+		options.status = 200;
+		return new Response(JSON.stringify(filteredAlbums), options);
+	}
+
+
 	if (url.pathname == "/themix" && request.method == "GET") {
 		if (currentUser) {
 			return serveFile(request, "./../frontend/home.html")

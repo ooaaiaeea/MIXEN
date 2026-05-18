@@ -645,3 +645,31 @@ GET {{baseUrl}}/api/tracks/trk-100
 Accept: application/json
 
 ###
+
+# ============================================================================
+# GROUP: Albums - Get All
+# ============================================================================
+
+# @name Get_Albums_Success_200
+# Description: Test successful retrieval of all albums.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/albums
+Accept: application/json
+
+###
+
+# @name Get_Albums_With_Query_Success_200
+# Description: Test successful retrieval of albums filtered by a search query.
+# Ensure you run a successful login request before running this test.
+GET {{baseUrl}}/api/albums?q=light
+Accept: application/json
+
+###
+
+# @name Get_Albums_Unauthorized_401
+# Description: Test error handling when attempting to retrieve albums without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+GET {{baseUrl}}/api/albums
+Accept: application/json
+
+###
