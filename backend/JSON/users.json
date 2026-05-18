@@ -223,7 +223,7 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": "23dc8e47-3a4e-40db-ba38-8a410ef4eb11",
+		"sessionId": null,
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],
@@ -283,9 +283,9 @@
 				"playlistId": "pl-4",
 				"ownerId": "usr-3",
 				"collaboratorIds": [],
-				"image": "https://example.com/image.jpg",
-				"name": "Updated Test Playlist",
-				"description": "This playlist has been updated via PATCH.",
+				"image": "./images/playlists/playlist_placeholder.jpeg",
+				"name": "My New Test Playlist",
+				"description": "A playlist created via API test",
 				"tracksInfo": [],
 				"tracks": []
 			}
