@@ -70,11 +70,14 @@ export class Playlist {
 	}
 
 	save() {
-		const requiredKeys = ["ownerId", "image", "name", "description"];
+		const requiredKeys = ["ownerId", "name", "description"];
 		for (const key of requiredKeys) {
 			if (!this[key]) {
 				return 400;
 			}
+		}
+		if (!this.image) {
+			this.image = "./images/playlists/playlist_placeholder.jpeg";
 		}
 		const currentPlaylists = Playlist.getPlaylists();
 		let highestPlaylistId = 0;
@@ -106,20 +109,51 @@ export class Playlist {
 		return 204;
 	}
 
-	update(changedPlaylist) {
-		const currentPlaylists = Playlist.getPlaylists();
+	update(changedPlaylist, currentUserId) {
 		const allowedKeys = ["collaboratorIds", "image", "name", "description", "tracksInfo"];
+		const filteredPlaylist = {};
+		let allowedKeyFound = false;
+		for (const key in changedPlaylist) {
+			if (allowedKeys.includes(key)) {
+				if (key == "collaboratorIds") {
+					if (this.ownerId != currentUserId) {
+						return [403, null];
+					}
+				}
+				allowedKeyFound = true;
+				filteredPlaylist[key] = changedPlaylist[key];
+			}
+		}
+		if (!allowedKeyFound) {
+			return [400, "keys"];
+		}
+		if (filteredPlaylist.tracksInfo) {
+			let highestPosition = 0;
+			const foundPositions = [];
+			for (const trackInfo of filteredPlaylist.tracksInfo) {
+				if (highestPosition < trackInfo.positionInPlaylist) {
+					highestPosition = trackInfo.positionInPlaylist;
+				}
+				if (foundPositions.includes(trackInfo.positionInPlaylist)) {
+					return [400, "positionInPlaylistDuplicate"];
+				}
+				foundPositions.push(trackInfo.positionInPlaylist);
+			}
+			if (highestPosition != filteredPlaylist.tracksInfo.length) {
+				return [400, "positionInPlaylistGap"];
+			}
+		}
+		const currentPlaylists = Playlist.getPlaylists();
 		for (const playlist of currentPlaylists) {
 			if (playlist.playlistId == this.playlistId) {
-				for (const key in changedPlaylist) {
-					if (allowedKeys.includes(key)) {
-						playlist[key] = changedPlaylist[key];
-						this[key] = changedPlaylist[key];
-					}
+				for (const key in filteredPlaylist) {
+					playlist[key] = filteredPlaylist[key];
+					this[key] = filteredPlaylist[key];
 				}
 				break;
 			}
 		}
 		Playlist.updatePlaylists(currentPlaylists);
+		return [204, null];
 	}
 }

@@ -223,7 +223,7 @@
 		"email": "test_api@example.com",
 		"username": "testUser_api",
 		"password": "password123",
-		"sessionId": "05f1840c-2ead-4365-92ed-b6c40ebb60d1",
+		"sessionId": "23dc8e47-3a4e-40db-ba38-8a410ef4eb11",
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
 		"likedPlaylists": [],
@@ -278,6 +278,16 @@
 						"positionInAlbum": 12
 					}
 				]
+			},
+			{
+				"playlistId": "pl-4",
+				"ownerId": "usr-3",
+				"collaboratorIds": [],
+				"image": "https://example.com/image.jpg",
+				"name": "Updated Test Playlist",
+				"description": "This playlist has been updated via PATCH.",
+				"tracksInfo": [],
+				"tracks": []
 			}
 		]
 	},

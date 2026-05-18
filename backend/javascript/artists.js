@@ -1,14 +1,29 @@
 import { Album } from "./albums.js";
 
 export class Artist {
-	static getArtists() {
+	static getArtists(query) {
 		const artistsData = JSON.parse(Deno.readTextFileSync("./JSON/artists.json"));
 		const artists = [];
 		for (const artistData of artistsData) {
+			if (query) {
+				if (!artistData.name.toLowerCase().includes(query.toLowerCase())) {
+					continue;
+				}
+			}
 			const artistInstance = new Artist(artistData);
 			artists.push(artistInstance);
 		}
 		return artists;
+	}
+
+	static getArtistById(id) {
+		const currentArtists = Artist.getArtists();
+		for (const artist of currentArtists) {
+			if (artist.artistId == id) {
+				return artist;
+			}
+		}
+		return null;
 	}
 
 	constructor(data) {

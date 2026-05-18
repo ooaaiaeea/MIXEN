@@ -145,5 +145,15 @@
 				"positionInAlbum": 12
 			}
 		]
+	},
+	{
+		"playlistId": "pl-4",
+		"ownerId": "usr-3",
+		"collaboratorIds": [],
+		"image": "https://example.com/image.jpg",
+		"name": "Updated Test Playlist",
+		"description": "This playlist has been updated via PATCH.",
+		"tracksInfo": [],
+		"tracks": []
 	}
 ]

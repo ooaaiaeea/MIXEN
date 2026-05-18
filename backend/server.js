@@ -53,7 +53,7 @@ async function handler(request) {
 		}
 		const allUsers = User.getUsers();
 		for (const user of allUsers) {
-			if (cookies.includes(`sessionId=${user.sessionId}`)) {
+			if (user.sessionId !== null && cookies.includes(`sessionId=${user.sessionId}`)) {
 				return user;
 			}
 		}
@@ -253,8 +253,155 @@ async function handler(request) {
 				}
 			}
 		}
-		options.status = 403;
+		options.status = 404;
 		return new Response(JSON.stringify("User not associated with playlist"), options);
+	}
+	if (playlistRoute.test(url) && request.method == "PATCH") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistRoute.exec(url).pathname.groups.id;
+		let changedPlaylist;
+		for (const playlist of currentUser.playlists) {
+			if (playlist.playlistId == id) {
+				try {
+					changedPlaylist = await request.json();
+					// deno-lint-ignore no-unused-vars
+				} catch (error) {
+					options.status = 400;
+					return new Response(JSON.stringify("Invalid JSON format"), options);
+				}
+				const status = playlist.update(changedPlaylist, currentUser.userId);
+				options.status = status[0];
+				if (options.status == 204) {
+					return new Response(null, options);
+				} else if (options.status == 403) {
+					return new Response(JSON.stringify("Only owner of playlist is allowed to change collaborators"), options);
+				} else if (options.status == 400 && status[1] == "keys") {
+					return new Response(JSON.stringify("No allowed keys in playlist"), options);
+				} else if (options.status == 400 && status[1] == "positionInPlaylistDuplicate") {
+					return new Response(JSON.stringify("positionInPlaylist has double entries"), options);
+				} else if (options.status == 400 && status[1] == "positionInPlaylistGap") {
+					return new Response(JSON.stringify("positionInPlaylist has gaps"), options);
+				}
+			}
+		}
+		options.status = 404;
+		return new Response(JSON.stringify("User not associated with playlist"), options);
+	}
+	const playlistLikeRoute = new URLPattern({ pathname: "/api/playlists/:id/like" });
+	if (playlistLikeRoute.test(url) && request.method == "POST") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistLikeRoute.exec(url).pathname.groups.id;
+		if (currentUser.likedPlaylists.includes(id)) {
+			options.status = 409;
+			return new Response(JSON.stringify("Playlist already liked"), options);
+		}
+		if (!Playlist.getPlaylistById(id)) {
+			options.status = 404;
+			return new Response(JSON.stringify("Playlist not found"), options);
+		}
+		currentUser.likedPlaylists.push(id);
+		currentUser.update({ likedPlaylists: currentUser.likedPlaylists });
+		options.status = 201;
+		return new Response(null, options);
+	}
+	if (playlistLikeRoute.test(url) && request.method == "DELETE") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistLikeRoute.exec(url).pathname.groups.id;
+		for (let i = 0; i < currentUser.likedPlaylists.length; i++) {
+			if (currentUser.likedPlaylists[i] == id) {
+				currentUser.likedPlaylists.splice(i, 1);
+				currentUser.update( { likedPlaylists: currentUser.likedPlaylists } )
+				options.status = 204;
+				return new Response(null, options);
+			}
+		}
+		options.status = 404;
+		return new Response(JSON.stringify("Playlist not already liked"), options);
+	}
+
+
+	if (url.pathname == "/api/tracks" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const query = url.searchParams.get("q");
+		const allTracks = Track.getTracks(query);
+		options.status = 200;
+		return new Response(JSON.stringify(allTracks), options);
+	}
+	const trackRoute = new URLPattern({ pathname: "/api/tracks/:id" });
+	if (trackRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = trackRoute.exec(url).pathname.groups.id;
+		const foundTrack = Track.getTrackById(id);
+		if (!foundTrack) {
+			options.status = 404;
+			return new Response(JSON.stringify("Track not found"), options)
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundTrack), options);
+		}
+	}
+
+
+	if (url.pathname == "/api/albums" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const query = url.searchParams.get("q");
+		const allAlbums = Album.getAlbums(query);
+		const filteredAlbums = [];
+		for (const album of allAlbums) {
+			filteredAlbums.push({
+				albumId: album.albumId,
+				totalTracks: album.totalTracks,
+				image: album.image,
+				name: album.name,
+				releaseDate: album.releaseDate,
+				artistId: album.artistId,
+				genre: album.genre,
+			});
+		}
+		options.status = 200;
+		return new Response(JSON.stringify(filteredAlbums), options);
+	}
+	const albumRoute = new URLPattern({ pathname: "/api/albums/:id" });
+	if (albumRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = albumRoute.exec(url).pathname.groups.id;
+		const foundAlbum = Album.getAlbumById(id);
+		if (!foundAlbum) {
+			options.status = 404;
+			return new Response(JSON.stringify("Album not found"), options);
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundAlbum), options);
+		}
+	}
+
+
+	if (url.pathname == "/api/artists" && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) };
+		const query = url.searchParams.get("q");
+		const allArtists = Artist.getArtists(query);
+		const filteredArtists = [];
+		for (const artist of allArtists) {
+			filteredArtists.push({
+				artistId: artist.artistId,
+				name: artist.name,
+			});
+		}
+		options.status = 200;
+		return new Response(JSON.stringify(filteredArtists), options);
+	}
+	const artistRoute = new URLPattern({ pathname: "/api/artists/:id" });
+	if (artistRoute.test(url) && request.method == "GET") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = artistRoute.exec(url).pathname.groups.id;
+		const foundArtist = Artist.getArtistById(id);
+		if (!foundArtist) {
+			options.status = 404;
+			return new Response(JSON.stringify("Artist not found"), options);
+		} else {
+			options.status = 200;
+			return new Response(JSON.stringify(foundArtist), options);
+		}
 	}
 
 
