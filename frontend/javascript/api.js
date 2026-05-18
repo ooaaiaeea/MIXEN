@@ -1,3 +1,4 @@
+console.log("API loaded")
 class API {
     async login(loginData) {
         const request = new Request("/api/auth/login", {
@@ -84,6 +85,7 @@ class API {
     }
 
     async getPlaylists() {
+        console.count("get Playlists called");
         const request = new Request("/api/playlists", {
             method: "GET",
             credentials: "include",

@@ -1,19 +1,20 @@
-const api = new API();
-const ui = new UI();
+console.count("home.js loaded")
+const homeApi = new API();
+const homeUi = new UI();
 
-async function getPlaylists(){
+async function loadPlaylists(){
     try {
-        ui.showLoading(loading, "Loading playlists...");
+        homeUi.showLoading(loading, "Loading playlists...");
 
-        api.getPlaylists()
+        homeApi.getPlaylists()
 
         //BYT TILL USER PLAYLISTS
-        const allPlaylists = await getPaylists();
+        const allPlaylists = await homeApi.getPlaylists();
 
-        ui.renderPlaylists(allPlaylists, playlistsContainer)
+        homeUi.renderPlaylists(allPlaylists, playlistsContainer)
 
     } catch(error) {
-        ui.showError(loading, error.message);
+        homeUi.showError(loading, error.message);
     }
 }
 
@@ -21,4 +22,4 @@ async function getPlaylists(){
 let playlistsContainer = document.querySelector("#playlists");
 let loading = document.querySelector("#loading");
 
-getPlaylists();
+loadPlaylists();

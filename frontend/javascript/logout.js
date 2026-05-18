@@ -1,9 +1,9 @@
-const api = new API();
-const ui = new UI();
+const logoutApi = new API();
+const logoutUi = new UI();
 
 async function logout(){
     try{
-        await api.logout();
+        await logoutApi.logout();
 
         window.location.href = "index.html";
     } catch (error) {

@@ -1,27 +1,27 @@
 class UI {
     clear(container){
         container.innerHTML = "";
-        container.textMessage= "";
+        container.textContent= "";
     }
 
     showLoading(container){
-        clear(container);
+        this.clear(container);
         container.textContent = "Loading..."
     }
 
     showError(container, errorMessage){
-        clear(container);
+        this.clear(container);
         container.textContent = errorMessage;
     }
 
     showMessage(container, message){
-        clear(container);
+        this.clear(container);
         container.textContent = message;
     }
 
     renderPlaylists(playlists, container) {
 
-        playlistList.innerHTML = "";
+        container.innerHTML = "";
 
         if (playlists.length == 0) {
             container.textContent = "No playlists found";
@@ -29,12 +29,23 @@ class UI {
         }
 
         for (let playlist of playlists) {
-            renderPlaylist(playlist, container);
+            this.renderPlaylist(playlist, container);
         }
     }
 
     renderPlaylist(playlist, container){
         let div = document.createElement("div");
+        div.className = "playlist.card";
+
+        let playlistImage = document.createElement("img");
+        playlistImage.classList.add = "playlist-image";
+
+        if (playlist.image) {
+            playlistImage.src = playlist.image;
+        } else {
+            playlistImage.src = "../backend/images/playlists/playlistplaceholder.jpeg"
+        }
+
 
         let title = document.createElement("h2");
         title.textContent = playlist.name;
@@ -46,11 +57,14 @@ class UI {
         playlistLink.href = `playlist.html?id=${playlist.playlist_id}`
         playlistLink.textContent = "view playlist";
 
+
+
         div.append(title);
         div.append(description);
         div.append(playlistLink);
 
-        playlists.append(div);
+
+        container.append(div);
     }
 
 }

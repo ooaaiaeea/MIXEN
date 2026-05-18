@@ -1,5 +1,5 @@
-const api = new API();
-const ui = new UI();
+const registerApi = new API();
+const registerUi = new registerUi();
 
 async function register(event) {
     event.preventDefault();
@@ -10,7 +10,7 @@ async function register(event) {
     let confirmPassword = document.getElementById("confirm-password");
 
     if (password.value != confirmPassword.value) {
-        ui.showError(loading, "Passwords do not match");
+        registerUi.showError(loading, "Passwords do not match");
         return;
     }
 
@@ -21,15 +21,15 @@ async function register(event) {
     }
 
     try {
-        ui.showLoading(loading, "Creating account. Please wait.")
+        registerUi.showLoading(loading, "Creating account. Please wait.")
 
-        api.register(registerData);
+        registerApi.register(registerData);
 
-        ui.showMessage(loading, "Account created! Redirecting to login")
+        registerUi.showMessage(loading, "Account created! Redirecting to login")
 
         window.location.href = "login.html"
     } catch(error) {
-        ui.showError(loading, `Register failed: ${error.message}`)
+        registerUi.showError(loading, `Register failed: ${error.message}`)
     }
 
 }

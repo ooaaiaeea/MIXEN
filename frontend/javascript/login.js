@@ -1,5 +1,6 @@
-const api = new API();
-const ui = new UI();
+console.log("Login.js")
+const loginApi = new API();
+const loginUi = new UI();
 
 async function login(event){
     event.preventDefault();
@@ -15,16 +16,16 @@ async function login(event){
     loading.textContent = "Logging in. Loading...";
 
     try {
-        ui.showLoading(loading);
+        loginUi.showLoading(loading);
 
-        await api.login(loginData);
+        await loginApi.login(loginData);
 
-        ui.showMessage(loading, "Success! Redirecting...")
+        loginUi.showMessage(loading, "Success! Redirecting...")
 
         window.location.href = "home.html";
 
     } catch(error) {
-        ui.showError(container, error.message)
+        loginUi.showError(container, error.message)
     }
 
 }
