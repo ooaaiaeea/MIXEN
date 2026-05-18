@@ -97,4 +97,9 @@ class UI {
         return trackPreview;
     }
 
+    renderSinglePlaylist(playlist, container){
+        //PLACEHOLDER
+        container.textContent = playlist.name;
+    }
+
 }

@@ -121,7 +121,7 @@ class API {
     }
 
     async getPlaylistById(playlistId) {
-        const response = await fetch(`/api/playlists/${playlistsId}`, {
+        const response = await fetch(`/api/playlists/${playlistId}`, {
             method: "GET",
             credentials: "include",
             headers: {
