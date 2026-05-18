@@ -53,7 +53,7 @@ async function handler(request) {
 		}
 		const allUsers = User.getUsers();
 		for (const user of allUsers) {
-			if (cookies.includes(`sessionId=${user.sessionId}`)) {
+			if (user.sessionId !== null && cookies.includes(`sessionId=${user.sessionId}`)) {
 				return user;
 			}
 		}
@@ -253,7 +253,38 @@ async function handler(request) {
 				}
 			}
 		}
-		options.status = 403;
+		options.status = 404;
+		return new Response(JSON.stringify("User not associated with playlist"), options);
+	}
+	if (playlistRoute.test(url) && request.method == "PATCH") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistRoute.exec(url).pathname.groups.id;
+		let changedPlaylist;
+		for (const playlist of currentUser.playlists) {
+			if (playlist.playlistId == id) {
+				try {
+					changedPlaylist = await request.json();
+					// deno-lint-ignore no-unused-vars
+				} catch (error) {
+					options.status = 400;
+					return new Response(JSON.stringify("Invalid JSON format"), options);
+				}
+				const status = playlist.update(changedPlaylist, currentUser.userId);
+				options.status = status[0];
+				if (options.status == 204) {
+					return new Response(null, options);
+				} else if (options.status == 403) {
+					return new Response(JSON.stringify("Only owner of playlist is allowed to change collaborators"), options);
+				} else if (options.status == 400 && status[1] == "keys") {
+					return new Response(JSON.stringify("No allowed keys in playlist"), options);
+				} else if (options.status == 400 && status[1] == "positionInPlaylistDuplicate") {
+					return new Response(JSON.stringify("positionInPlaylist has double entries"), options);
+				} else if (options.status == 400 && status[1] == "positionInPlaylistGap") {
+					return new Response(JSON.stringify("positionInPlaylist has gaps"), options);
+				}
+			}
+		}
+		options.status = 404;
 		return new Response(JSON.stringify("User not associated with playlist"), options);
 	}
 

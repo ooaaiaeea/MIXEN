@@ -105,7 +105,7 @@ export class User {
 			for (let i = 0; i < playlist.collaboratorIds.length; i++) {
 				if (playlist.collaboratorIds[i] == this.userId) {
 					playlist.collaboratorIds.splice(i, 1);
-					playlist.update(playlist);
+					playlist.update(playlist, playlist.ownerId);
 					break;
 				}
 			}

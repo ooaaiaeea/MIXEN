@@ -430,3 +430,99 @@ DELETE {{baseUrl}}/api/playlists/pl-3
 DELETE {{baseUrl}}/api/playlists/pl-4
 
 ###
+
+# ============================================================================
+# GROUP: Playlists - Update (PATCH)
+# ============================================================================
+
+# @name Update_Playlist_Success_204
+# Description: Test successful update of a playlist.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-4
+Content-Type: application/json
+
+{
+    "name": "Updated Test Playlist",
+    "description": "This playlist has been updated via PATCH."
+}
+
+###
+
+# @name Update_Playlist_Not_Associated_404
+# Description: Test error handling when attempting to update a playlist the user is not associated with.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-1
+Content-Type: application/json
+
+{
+    "name": "Hacked Playlist"
+}
+
+###
+
+# @name Update_Playlist_Change_Collab_Not_Owner_403
+# Description: Test error handling when a collaborator (not owner) tries to change collaborators.
+# Ensure you run a successful login request before running this test.
+# Note: testUser_api is a collaborator on pl-3, but not an owner.
+PATCH {{baseUrl}}/api/playlists/pl-3
+Content-Type: application/json
+
+{
+    "collaboratorIds": ["usr-1"]
+}
+
+###
+
+# @name Update_Playlist_No_Allowed_Keys_400
+# Description: Test error handling when no allowed keys are provided in the update payload.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-4
+Content-Type: application/json
+
+{
+    "invalidKey": "value"
+}
+
+###
+
+# @name Update_Playlist_Position_Duplicate_400
+# Description: Test error handling when updating tracksInfo with duplicate positionInPlaylist.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-4
+Content-Type: application/json
+
+{
+    "tracksInfo": [
+        { "trackId": "trk-1", "positionInPlaylist": 1 },
+        { "trackId": "trk-2", "positionInPlaylist": 1 }
+    ]
+}
+
+###
+
+# @name Update_Playlist_Position_Gap_400
+# Description: Test error handling when updating tracksInfo with gaps in positionInPlaylist.
+# Ensure you run a successful login request before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-4
+Content-Type: application/json
+
+{
+    "tracksInfo": [
+        { "trackId": "trk-1", "positionInPlaylist": 1 },
+        { "trackId": "trk-2", "positionInPlaylist": 3 }
+    ]
+}
+
+###
+
+# @name Update_Playlist_Unauthorized_401
+# Description: Test error handling when attempting to update a playlist without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+PATCH {{baseUrl}}/api/playlists/pl-4
+Content-Type: application/json
+
+{
+    "name": "Updated Test Playlist"
+}
+
+###
