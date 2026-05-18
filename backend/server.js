@@ -287,6 +287,23 @@ async function handler(request) {
 		options.status = 404;
 		return new Response(JSON.stringify("User not associated with playlist"), options);
 	}
+	const playlistLikeRoute = new URLPattern({ pathname: "/api/playlists/:id/like" });
+	if (playlistLikeRoute.test(url) && request.method == "POST") {
+		if (!currentUser) { return new Response(null, options) }
+		const id = playlistLikeRoute.exec(url).pathname.groups.id;
+		if (currentUser.likedPlaylists.includes(id)) {
+			options.status = 409;
+			return new Response(JSON.stringify("Playlist already liked"), options);
+		}
+		if (!Playlist.getPlaylistById(id)) {
+			options.status = 404;
+			return new Response(JSON.stringify("Playlist not found"), options);
+		}
+		currentUser.likedPlaylists.push(id);
+		currentUser.update({ likedPlaylists: currentUser.likedPlaylists });
+		options.status = 201;
+		return new Response(null, options);
+	}
 
 
 	if (url.pathname == "/themix" && request.method == "GET") {

@@ -526,3 +526,40 @@ Content-Type: application/json
 }
 
 ###
+
+# ============================================================================
+# GROUP: Playlists - Like
+# ============================================================================
+
+# @name Like_Playlist_Success_201
+# Description: Test successful liking of a playlist.
+# Ensure you run a successful login request before running this test.
+POST {{baseUrl}}/api/playlists/pl-1/like
+Content-Type: application/json
+
+###
+
+# @name Like_Playlist_Already_Liked_409
+# Description: Test error handling when attempting to like a playlist that is already liked.
+# Ensure you run the Like_Playlist_Success_201 test before running this test.
+# The user needs to have successfully liked the playlist in the previous request.
+POST {{baseUrl}}/api/playlists/pl-1/like
+Content-Type: application/json
+
+###
+
+# @name Like_Playlist_Not_Found_404
+# Description: Test error handling when attempting to like a nonexistent playlist.
+# Ensure you run a successful login request before running this test.
+POST {{baseUrl}}/api/playlists/pl-999/like
+Content-Type: application/json
+
+###
+
+# @name Like_Playlist_Unauthorized_401
+# Description: Test error handling when attempting to like a playlist without being logged in.
+# Ensure you run a logout request (or clear your cookies) before running this test.
+POST {{baseUrl}}/api/playlists/pl-1/like
+Content-Type: application/json
+
+###

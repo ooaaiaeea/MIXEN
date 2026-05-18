@@ -226,7 +226,9 @@
 		"sessionId": null,
 		"image": "./images/users/placeholder_red.png",
 		"userId": "usr-3",
-		"likedPlaylists": [],
+		"likedPlaylists": [
+			"pl-1"
+		],
 		"playlists": [
 			{
 				"playlistId": "pl-3",
