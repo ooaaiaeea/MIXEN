@@ -28,7 +28,10 @@ class API {
     async logout() {
         const response = await fetch("api/auth/logout", {
             method: "POST",
-            credentials: "include"
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
 
         if (!response.ok) {
@@ -133,5 +136,37 @@ class API {
             throw new Error("Could not get playlist by id");
         }
         return await response.json();
+    }
+
+    async getArtistsById(artistId) {
+        const response = await fetch(`/api/artists/${artistId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not load artist");
+        }
+
+        return await json();
+    }
+
+    async getAlbumById(albumId) {
+        const response = await fetch(`/api/albums/${albumId}`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error("Could not load album");
+        }
+
+        return await json();
     }
 }
