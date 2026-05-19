@@ -63,3 +63,28 @@
     padding: 6px 10px;
     border-radius: 4px;
 }
+
+.single-playlist-image {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.tracks-container {
+    list-style: none;
+    padding: 0;
+    margin-top: 24px;
+}
+
+.track-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr auto;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid #dddddd;
+}
+
+.track-row span {
+    font-size: 14px;
+}

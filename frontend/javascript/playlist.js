@@ -16,6 +16,7 @@ async function loadPlaylist() {
 
         playlistUi.clear(loading);
         playlistUi.renderSinglePlaylist(playlist, playlistContainer);
+        console.log(playlist);
 
     } catch (error) {
         playlistUi.showError(loading, error.message);

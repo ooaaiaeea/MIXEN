@@ -98,8 +98,60 @@ class UI {
     }
 
     renderSinglePlaylist(playlist, container){
-        //PLACEHOLDER
-        container.textContent = playlist.name;
+        container.innerHTML = "";
+
+        container.classList.add("single-playlist");
+
+        let playlistImage = document.createElement("img");
+        playlistImage.classList.add("single-playlist-image");
+        playlistImage.src = playlist.image;
+
+        let title = document.createElement("h2");
+        title.textContent = playlist.name;
+
+        let description = document.createElement("p");
+        description.textContent = playlist.description;
+
+        let tracksContainer = document.createElement("ul");
+        tracksContainer.classList.add("tracks-container");
+
+        if (!playlist.tracks || playlist.tracks.length == 0) {
+            let noTracks = document.createElement("li");
+            noTracks.textContent = "No tracks in this playlist yet...";
+            tracksContainer.append(noTracks);
+        } else {
+            //SORT TRACKS
+
+            for (let track of playlist.tracks) {
+                let trackDiv = document.createElement("li");
+                trackDiv.classList.add("track-row");
+
+                let trackName = document.createElement("span");
+                trackName.textContent = track.name;
+
+                let trackArtist = document.createElement("span");
+                trackArtist.textContent = "Artist Placeholder";
+
+                let trackAlbum = document.createElement("span");
+                trackAlbum.textContent = "Album Placeholder"
+
+                let trackDuration = document.createElement("span");
+                trackDuration.textContent = track.duration;
+
+                trackDiv.append(trackName);
+                trackDiv.append(trackArtist);
+                trackDiv.append(trackAlbum);
+                trackDiv.append(trackDuration);
+
+                tracksContainer.append(trackDiv);
+            }
+        }
+
+        
+        container.append(playlistImage);
+        container.append(title);
+        container.append(description);
+        container.append(tracksContainer);
     }
 
 }
